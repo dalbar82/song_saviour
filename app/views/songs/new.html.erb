@@ -19,6 +19,7 @@
 <%= f.input :price, label: "Enter price in dollars or royalty percentage" %>
  <%#f.input :genre, collection: Genre.all, label_method: :genre, value_method: :id %>
  <%= f.association :genre, label_method: :genre %>
+ <%= f.input :lyrics,as: :rich_text_area, label: "lyrics"  %>
 <%= f.submit  %>
 
 <% end %>

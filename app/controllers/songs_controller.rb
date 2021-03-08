@@ -1,4 +1,6 @@
 class SongsController < ApplicationController
+before_action :set_song, only: %i[show]
+
   def index
   end
 
@@ -6,7 +8,7 @@ class SongsController < ApplicationController
     @song = Song.new(song_params)
     @song.user = current_user
 
-    if @song.save 
+    if @song.save
       redirect_to song_url(@song)
     else
       render :new
@@ -30,8 +32,14 @@ class SongsController < ApplicationController
   def destroy
   end
 
+  private
+
+  def set_song
+    @song = Song.find(params[:id])
+  end
+
   def song_params
-    params.require(:song).permit(:name, :rating, :priceing_type, :state, :audio, :genre_id )
+    params.require(:song).permit(:name, :rating, :priceing_type, :price, :state, :audio, :lyrics, :genre_id )
   end
 
 end

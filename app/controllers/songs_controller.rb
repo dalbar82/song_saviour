@@ -39,7 +39,7 @@ before_action :set_song, only: %i[show]
   end
 
   def song_params
-    params.require(:song).permit(:name, :rating, :priceing_type, :price, :state, :audio, :lyrics, :genre_id )
+    params.require(:song).permit(:name, :rating, :pricing_type, :price, :state, :audio, :lyrics, :genre_id )
   end
 
 end

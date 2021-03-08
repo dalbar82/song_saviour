@@ -2,7 +2,11 @@
 <p>Find me in app/views/song/show.html.erb</p>
 
 <h4>  Song Title: <%= @song.name %></h4>
-<h3>  Song Price: <%= @song.price %>  </h3>
+<h6>  Song Price: <%= @song.price %>  </h6>
+
+<%= cl_video_tag @song.audio.key, controls: true, style: "width: 25%; height:35px; " %>
+
+
 <p> <%= @song.lyrics %></p>
 
-<%= cl_video_tag @song.audio.key, controls: true, style: "width: 50%; height:35px; " %>
+

@@ -1,2 +1,18 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+
+<p> Just checking Cloudinary is set up; don't forget it uses the publicID </p>
+<%= cl_image_tag("vrm7g8j4a5jcxsxoaysn",
+      width: 400, height: 300, crop: :fill) %>
+
+<%=   cl_upload_tag(:video_id, :resource_type => "video", 
+  :eager => [{:streaming_profile => "full_hd", :format => "m3u8"}], 
+  :eager_async => true, 
+  :eager_notification_url => "https://mysite.example.com/notify_endpoint", 
+  :html => {:id => "my_upload_tag"})  
+
+   %>
+
+<%= cl_video_tag "u3toxc9drfqclm8x2hpr", controls: true, style: "width: 50%; " %>
+
+ <!-- Note: Use the video resource type for all video assets as well as for audio files, such as .mp3. -->

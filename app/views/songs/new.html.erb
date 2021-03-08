@@ -16,13 +16,14 @@
 <%= simple_form_for @song do |f|  %>
 <%= f.input :name, label: "Name of song"   %>
 <%= f.input :audio, as: :file %>
+<%= f.input :price, label: "Enter price in dollars or royalty percentage" %>
  <%#f.input :genre, collection: Genre.all, label_method: :genre, value_method: :id %>
  <%= f.association :genre, label_method: :genre %>
 <%= f.submit  %>
 
 <% end %>
 
-<%#cl_video_tag "u3toxc9drfqclm8x2hpr", controls: true, style: "width: 50%; " %>
+<%= cl_video_tag "u3toxc9drfqclm8x2hpr", controls: true, style: "width: 50%; " %>
 
 
 

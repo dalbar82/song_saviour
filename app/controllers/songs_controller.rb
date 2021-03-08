@@ -3,7 +3,6 @@ class SongsController < ApplicationController
   end
 
   def create
-
     @song = Song.new(song_params)
     @song.user = current_user
 
@@ -11,7 +10,6 @@ class SongsController < ApplicationController
       redirect_to song_url(@song)
     else
       render :new
-      
     end
   end
 

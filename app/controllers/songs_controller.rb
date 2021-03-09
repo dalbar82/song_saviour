@@ -1,6 +1,7 @@
 class SongsController < ApplicationController
-before_action :set_song, only: %i[show]
-
+ 
+  before_action :set_song, only: %i[ show, edit, update ]
+ 
   def index
   end
 
@@ -8,8 +9,6 @@ before_action :set_song, only: %i[show]
     @song = Song.new(song_params)
     @song.state = "available"
     @song.user = current_user
-
-
     if @song.save
       redirect_to song_url(@song)
     else
@@ -23,6 +22,7 @@ before_action :set_song, only: %i[show]
   end
 
   def show
+    @song = Song.find(params[:id])
   end
 
   def edit
@@ -37,6 +37,7 @@ before_action :set_song, only: %i[show]
   private
 
   def set_song
+    #@song = Song.find(params[:id])
     @song = Song.find(params[:id])
   end
 

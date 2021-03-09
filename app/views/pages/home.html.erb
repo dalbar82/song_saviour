@@ -2,15 +2,17 @@
 
 
 <div class="home-video-wrapper">
-
   <%= video_tag "https://res.cloudinary.com/dck5uyfgr/video/upload/v1615264425/songsaviourBGmov_zmwsnz.mov", autoplay: true, loop: true, mute: true, class: "home_video" %>
 
   <div class="container-flex">
     <h1 class="homeHeader"> Song Saviour</h1>
-    <h1 class="homeTag">Music lives here</h1>
-      <div class="row">
-      <button class="btn btn-primary"> <%= link_to "Sell", new_song_path %> </button>
-      </div>
+    <h1 class="homeTag">Music lives here.</h1>
+
+    <div class="row homebutt">
+      <button class="sellButton"> <%= link_to "Sell", new_song_path %> </button>
+      <button class="buyButton"> <%= link_to "Buy", songs_path %> </button>
+    </div>
+
   </div>
 </div>
 

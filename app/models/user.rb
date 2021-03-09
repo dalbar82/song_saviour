@@ -4,5 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :songs
-  has_one_attached :photo
+  has_one_attached :avatar
 end

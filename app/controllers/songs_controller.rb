@@ -3,6 +3,8 @@ class SongsController < ApplicationController
   before_action :set_song, only: %i[ show, edit, update ]
  
   def index
+    # will add in the search bar stuff soon
+    @songs = Song.all
   end
 
   def create
@@ -26,9 +28,17 @@ class SongsController < ApplicationController
   end
 
   def edit
+    @song = Song.find(params[:id])
   end
 
   def update
+    @song = Song.find(params[:id])
+    @song.user = current_user
+    if @song.update(song_params)
+      redirect_to @song
+    else 
+      render:edit
+    end
   end
 
   def destroy
@@ -37,7 +47,7 @@ class SongsController < ApplicationController
   private
 
   def set_song
-    #@song = Song.find(params[:id])
+    # @song = Song.find(params[:id])
     @song = Song.find(params[:id])
   end
 

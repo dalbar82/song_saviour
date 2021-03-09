@@ -1,8 +1,9 @@
 // Specific CSS for your home-page
 
-.homeh1{
-color: white;
-}
+
+
+
+
 .home_video {
  width: 100vw;
  height: 100vh;
@@ -11,10 +12,31 @@ color: white;
  top: 0;
  z-index: -2;
 }
+
 .home-video-wrapper {
 height: 100vh;
 display: flex;
+justify-content: center;
+background-color: #00000091;
 }
-h1.home {
+
+.container-flex{
+  top: 74px;
+  position: relative;
+  text-align: right;
+}
+
+.homeHeader{
+  font-family: 'Poiret One', cursive;
+  z-index: 1;
   color: white;
+  font-size: 90px;
 }
+
+.homeTag{
+  font-family: 'Montserrat';
+  z-index: 1;
+  color: #ffffff9e;
+  font-size: 35px;
+}
+

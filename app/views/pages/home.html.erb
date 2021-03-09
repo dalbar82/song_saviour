@@ -1,8 +1,19 @@
-<h1 class="homeh1">Hello</h1>
+
 
 
 
 <div class="home-video-wrapper">
+
   <%= video_tag "songsaviourBGmov.mov", autoplay: true, loop: true, mute: true, class: "home_video" %>
-  <h1 class="home"> Welcome to Paradise</h1>
+
+  <div class="container-flex">
+    <h1 class="homeHeader"> Song Saviour</h1>
+    <h1 class="homeTag">Music lives here</h1>
+      <div class="row">
+      <button class="btn btn-primary"> <%= link_to "Sell", new_song_path %> </button>
+      </div>
+  </div>
 </div>
+
+
+

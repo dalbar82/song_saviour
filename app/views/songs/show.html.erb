@@ -13,6 +13,10 @@
  This ones on a royalty deal for <%=  @song.price  %> % of the sweet cash you make off it
 <% end %>
 
+<% if current_user.id == @song.user_id %>
+<p> you own this song </p>
+<% end %>
+
 <p> <%= @song.lyrics %></p>
 
 

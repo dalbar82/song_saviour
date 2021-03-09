@@ -15,6 +15,7 @@
  <%  else  %>
   <p> Royalty: <%=  song.price  %>%  </p>
  <% end %>
+ <p>Uploaded by: <%= song.user.first_name   %> <%= song.user.last_name %> </p>
 
  <%#link_to ??no_cart_route_as_yet do %>
   <i class="fas fa-shopping-cart"></i>

@@ -36,8 +36,8 @@ class SongsController < ApplicationController
     @song.user = current_user
     if @song.update(song_params)
       redirect_to @song
-    else 
-      render:edit
+    else
+     render :edit
     end
   end
 

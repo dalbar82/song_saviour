@@ -14,20 +14,22 @@
 }
 
 .home-video-wrapper {
-height: 100vh;
+    position: relative;
+    height: 100vh;
+    top: 0;
 display: flex;
 justify-content: center;
-// background-color: #00000091;
+background-color: #00000091;
 }
 
 .container-flex{
-  top: 74px;
-  position: relative;
-  text-align: right;
+  top: 160px;
+    position: absolute;
+    text-align: right;
 }
 
 .homeHeader{
-  font-family: 'Poiret One', cursive;
+  font-family: 'Reem Kufi', cursive;
   z-index: 1;
   color: white;
   font-size: 90px;
@@ -36,7 +38,36 @@ justify-content: center;
 .homeTag{
   font-family: 'Montserrat';
   z-index: 1;
-  color: #ffffff9e;
-  font-size: 35px;
+  color: #ffffffeb;
+  font-size: 32px;
 }
 
+.sellButton{
+  background-color: #FF5964;
+    border-radius: 6px;
+    color: white;
+    border: none;
+    padding: 8px 35px;
+
+    a{
+      color: white;
+    }
+}
+
+.buyButton{
+  background-color: #0CCE6B;
+    border-radius: 6px;
+    color: white;
+    border: none;
+    padding: 8px 35px;
+
+    a{
+      color: white;
+    }
+}
+
+.homebutt{
+  justify-content: space-between;
+    top: 175px;
+    position: relative;
+}

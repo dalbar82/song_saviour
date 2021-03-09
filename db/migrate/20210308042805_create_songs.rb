@@ -3,7 +3,6 @@ class CreateSongs < ActiveRecord::Migration[6.1]
     create_table :songs do |t|
       t.string :name
       t.integer :rating
-      t.string :priceing_type
       t.integer :price
       t.string :state
       t.references :user, null: false, foreign_key: true

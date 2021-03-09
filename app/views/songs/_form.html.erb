@@ -1,0 +1,11 @@
+<%= simple_form_for @song do |f|  %>
+<%= f.input :name, label: "Name of song"   %>
+<%= f.input :audio, as: :file %>
+<%= f.input :dollar,  as: :radio_buttons, label: "Is song IP being bought outright? / if no, will assign to royalty percent type purchase"  %>
+<%= f.input :price, label: "Enter price in dollars or royalty percentage" %>
+<%# f.input :genre, collection: Genre.all, label_method: :genre, value_method: :id %>
+<%= f.association :genre, label_method: :genre %>
+<%= f.input :lyrics, as: :rich_text_area, label: "lyrics", class: "lyrics_text" %>   
+<%= f.submit  %>
+
+<% end %>

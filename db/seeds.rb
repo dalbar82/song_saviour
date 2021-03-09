@@ -36,3 +36,4 @@ Genre.create!(genre: "Dubstep")
 Genre.create!(genre: "Electro")
 Genre.create!(genre: "Bluegrass")
 Genre.create!(genre: "Jazz")
+

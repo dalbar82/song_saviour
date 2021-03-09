@@ -6,7 +6,9 @@ before_action :set_song, only: %i[show]
 
   def create
     @song = Song.new(song_params)
+    @song.state = "available"
     @song.user = current_user
+
 
     if @song.save
       redirect_to song_url(@song)
@@ -39,7 +41,7 @@ before_action :set_song, only: %i[show]
   end
 
   def song_params
-    params.require(:song).permit(:name, :rating, :pricing_type, :price, :state, :audio, :lyrics, :genre_id )
+    params.require(:song).permit(:name, :rating, :pricing_type, :dollar, :price, :state, :audio, :lyrics, :genre_id )
   end
 
 end

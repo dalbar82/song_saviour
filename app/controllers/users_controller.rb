@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 class UsersController < ApplicationController
+=======
+<<<<<<< HEAD:app/controllers/songs_controller.rb
+class SongsController < ApplicationController
+=======
+class UsersController < ApplicationController
+>>>>>>> master:app/controllers/users_controller.rb
+>>>>>>> master
   def index
   end
 

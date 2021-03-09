@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_08_192939) do
+ActiveRecord::Schema.define(version: 2021_03_09_021504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_192939) do
   create_table "songs", force: :cascade do |t|
     t.string "name"
     t.integer "rating"
-    t.boolean "dollar"
+    t.string "priceing_type"
     t.integer "price"
     t.string "state"
     t.bigint "user_id", null: false

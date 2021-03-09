@@ -2,6 +2,7 @@ class SongsController < ApplicationController
 before_action :set_song, only: %i[show]
 
   def index
+    @songs = Song.all
   end
 
   def create
@@ -24,12 +25,19 @@ before_action :set_song, only: %i[show]
   end
 
   def edit
+    @song = Song.find(params[:id])
   end
 
   def update
+    @song = Song.find(params[:id])
+    @song.update(song_params)
+    redirect_to songs_path
   end
 
   def destroy
+    @song = Song.find(params[:id])
+    @song.destroy
+    redirect_to songs_path
   end
 
   private

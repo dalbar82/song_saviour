@@ -1,2 +1,15 @@
 <h1>Song#index</h1>
 <p>Find me in app/views/song/index.html.erb</p>
+
+<h2>SONGS</h2>
+
+<% @songs.each do |song| %>
+  <p>Name: <%= song.name %>; unit price of <%= number_to_currency(song.price) %></p>
+  <p>
+    <%= link_to "Edit", edit_song_path(song) %> |
+    <%= link_to "Delete", song_path(song), method: :delete, data: {confirm: "Are you sure?"} %>
+    <%= button_to "Add #{song.name} to cart", line_items_path(:song_id => song.id) %>
+  </p>
+<% end%>
+
+<%= link_to "new song", new_song_path

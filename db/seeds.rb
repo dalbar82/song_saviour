@@ -37,3 +37,27 @@ Genre.create!(genre: "Electro")
 Genre.create!(genre: "Bluegrass")
 Genre.create!(genre: "Jazz")
 
+Song.destroy_all
+product1 = Song.create({:name=>"tomato", :price => 1})
+product2 = Song.create({:name=>"milk", :price => 3})
+product3 = Song.create({:name=>"bread", :price => 5})
+product4 = Song.create({:name=>"bacon", :price => 10})
+product5 = Song.create({:name=>"cheese", :price => 3})
+
+puts "Total number of products: #{Song.all.count}"
+puts "Product names: #{Song.all.pluck("name")}"
+puts "Product1: #{product1.name} price: #{product1.price}"
+puts "Product2: #{product2.name} price: #{product2.price}"
+puts "Product3: #{product3.name} price: #{product3.price}"
+puts "Product4: #{product4.name} price: #{product4.price}"
+puts "Product5: #{product5.name} price: #{product5.price}"
+
+product1.save
+product2.save
+product3.save
+product4.save
+product5.save
+
+# CART
+ShoppingCart.destroy_all
+puts "\nTotal cart count: #{ShoppingCart.all.count}"

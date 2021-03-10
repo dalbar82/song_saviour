@@ -1,7 +1,6 @@
-<h1>Song#index</h1>
-<p>Find me in app/views/song/index.html.erb</p>
 
-<div class="d-flex">
+
+<%= link_to "new song", new_song_path %>
 
 <% @songs.each do |song| %>
 
@@ -11,14 +10,20 @@
  <%= song.genre.genre %>
 
  <% if song.dollar == true  %>
+ <%= song.name %>; unit price of <%= number_to_currency(song.price) %>
   <p>  Purchase $<%=song.price  %> </p>
  <%  else  %>
   <p> Royalty: <%=  song.price  %>%  </p>
  <% end %>
  <p>Uploaded by: <%= song.user.first_name   %> <%= song.user.last_name %> </p>
-
+  <p>
+    <%= link_to "Edit", edit_song_path(song) %> |
+    <%= link_to "Delete", song_path(song), method: :delete, data: {confirm: "Are you sure?"} %>
+    <%= button_to "Add #{song.name} to cart", line_items_path(:song_id => song.id) %>
+  </p>
  <%#link_to ??no_cart_route_as_yet do %>
   <i class="fas fa-shopping-cart"></i>
+  
  <%# end  %>
 
   <% if song.audio.key.nil? == false  %>

@@ -4,7 +4,12 @@ class SongsController < ApplicationController
  
   def index
     # will add in the search bar stuff soon
+
     @songs = Song.all
+    @song = Song.new
+    if params[:query].present?
+      @songs = Song.global_search(params[:query])
+    end
   end
 
   def create

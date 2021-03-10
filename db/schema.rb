@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_09_021504) do
+ActiveRecord::Schema.define(version: 2021_03_10_040118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 2021_03_09_021504) do
     t.bigint "song_id", null: false
     t.bigint "shopping_cart_id", null: false
     t.bigint "user_id", null: false
+    t.bigint "order_id"
+    t.index ["order_id"], name: "index_line_items_on_order_id"
     t.index ["shopping_cart_id"], name: "index_line_items_on_shopping_cart_id"
     t.index ["song_id"], name: "index_line_items_on_song_id"
     t.index ["user_id"], name: "index_line_items_on_user_id"
@@ -87,9 +89,7 @@ ActiveRecord::Schema.define(version: 2021_03_09_021504) do
     t.integer "total_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "song_id", null: false
     t.bigint "user_id", null: false
-    t.index ["song_id"], name: "index_shopping_carts_on_song_id"
     t.index ["user_id"], name: "index_shopping_carts_on_user_id"
   end
 
@@ -135,13 +135,13 @@ ActiveRecord::Schema.define(version: 2021_03_09_021504) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "shopping_carts"
   add_foreign_key "line_items", "songs"
   add_foreign_key "line_items", "users"
   add_foreign_key "orders", "shopping_carts"
   add_foreign_key "orders", "songs"
   add_foreign_key "orders", "users"
-  add_foreign_key "shopping_carts", "songs"
   add_foreign_key "shopping_carts", "users"
   add_foreign_key "songs", "genres"
   add_foreign_key "songs", "users"

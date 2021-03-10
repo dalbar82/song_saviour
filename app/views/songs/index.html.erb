@@ -1,5 +1,3 @@
-<h1>Song#index</h1>
-<p>Find me in app/views/song/index.html.erb</p>
 
  <h2> Loads of cool songs - Let's make it easier to find that gold in the rough</h2>
 
@@ -15,7 +13,7 @@
 
 <div class="d-flex">
 
-
+<%= link_to "new song", new_song_path %>
 
   <% @songs.each do |song| %>
 
@@ -25,7 +23,8 @@
   <%= song.genre.genre %>
 
   <% if song.dollar == true  %>
-    <p>  Purchase $<%=song.price  %> </p>
+    <p>  Purchase $<%=song.price  %>
+  
   <%  else  %>
     <p> Royalty: <%=  song.price  %>%  </p>
   <% end %>
@@ -39,6 +38,9 @@
       <%= cl_video_tag song.audio.key, controls: true, style: "width: 100%; height:35px; " %>
     <% end %>
  
+    <%= link_to "Edit", edit_song_path(song) %> |
+    <%= link_to "Delete", song_path(song), method: :delete, data: {confirm: "Are you sure?"} %>
+    <%= button_to "Add #{song.name} to cart", line_items_path(:song_id => song.id) %>
 
 <% end %>
 

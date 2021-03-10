@@ -66,3 +66,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # adding the cloudinary gem into our project
 gem 'cloudinary', '~> 1.16.0'
+
+# adding the search gem pg_search 
+gem 'pg_search', '~> 2.3.0'

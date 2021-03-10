@@ -53,6 +53,6 @@ Song.create!(name: "They call me Dr P " , price: 210, state: "available", dollar
 Song.create!(name: "Batch Fever" , price: 2, state: "available", dollar: false, user_id: 4, genre_id:10 )
 Song.create!(name: "I am the Unicorn" , price: 1, state: "available", dollar: true, user_id: 2, genre_id:16 )
 Song.create!(name: "Enough for now" , price: 3, state: "pending", dollar: false, user_id: 5, genre_id:20 )
-Song.create!(name: "Live to code" , price: 350, state: "pending", dollar: true, user_id: 2, genre_id:4 )
+Song.create!(name: "Live to code" , price: 350, state: "pending", dollar: false, user_id: 2, genre_id:4 )
 Song.create!(name: "Late night feverdream" , price: 275, state: "available", dollar: true, user_id: 7, genre_id:4 )
-Song.create!(name: "Seeding forever" , price: 125, state: "pending", dollar: true, user_id: 6, genre_id:8 )
+Song.create!(name: "Seeding forever" , price: 125, state: "pending", dollar: false, user_id: 6, genre_id:8 )

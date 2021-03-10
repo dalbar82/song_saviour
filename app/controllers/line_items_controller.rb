@@ -43,5 +43,5 @@ end
 
 private
   def line_item_params
-    params.require(:line_item).permit(:quantity,:song_id, :shopping_cart_id)
+    params.require(:line_item).permit(:quantity, :song_id, :shopping_cart_id)
   end

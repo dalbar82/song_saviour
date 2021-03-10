@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 2021_03_09_054320) do
     t.bigint "song_id", null: false
     t.bigint "shopping_cart_id", null: false
     t.bigint "user_id", null: false
-    t.integer "quantity"
     t.index ["shopping_cart_id"], name: "index_line_items_on_shopping_cart_id"
     t.index ["song_id"], name: "index_line_items_on_song_id"
     t.index ["user_id"], name: "index_line_items_on_user_id"
@@ -79,10 +78,6 @@ ActiveRecord::Schema.define(version: 2021_03_09_054320) do
     t.bigint "song_id", null: false
     t.bigint "user_id", null: false
     t.bigint "shopping_cart_id", null: false
-    t.string "name"
-    t.string "email"
-    t.text "address"
-    t.string "pay_method"
     t.index ["shopping_cart_id"], name: "index_orders_on_shopping_cart_id"
     t.index ["song_id"], name: "index_orders_on_song_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
@@ -99,13 +94,12 @@ ActiveRecord::Schema.define(version: 2021_03_09_054320) do
   create_table "songs", force: :cascade do |t|
     t.string "name"
     t.integer "rating"
-    t.string "priceing_type"
+    t.integer "price"
     t.string "state"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "genre_id", null: false
-    t.decimal "price"
     t.boolean "dollar"
     t.index ["genre_id"], name: "index_songs_on_genre_id"
     t.index ["user_id"], name: "index_songs_on_user_id"

@@ -23,7 +23,16 @@
                 input_html: { autocomplete: "last_name" } %>
     <%= f.input :photo,
                 required: false,
-                as: :file, input_html: { autocomplete: "photo"} %>                        
+                label: "Choose a great photo to rep yourself",
+                as: :file, input_html: { autocomplete: "photo"} %>
+    <%= f.input :nickname,
+                required: true,
+                label: "We are all friends here, give us a nickname or artist name to use",
+                input_html: { autocomplete: "nickname" } %>            
+    <%= f.input :description,
+                required: false,
+                as: :rich_text_area, label: "Short description of yourself as an artist or a buyer",
+                class: "description_text" %>   
   </div>
 
    

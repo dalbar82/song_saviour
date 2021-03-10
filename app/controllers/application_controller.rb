@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::Base
+  # the following two lines are meant to all the action text RTFiles to deploy to Heroku
+  require 'action_text'
+  helper ActionText::Engine.helpers
+
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -24,7 +28,7 @@ class ApplicationController < ActionController::Base
         end
       end
 
-      if session[:shopping_cart_id] == nil
+      if session[:shopping_cart_id] == nil && current_user !=nil
         @current_cart = ShoppingCart.create(user_id: current_user.id)
         session[:shopping_cart_id] = @current_cart.id
       end
@@ -32,6 +36,6 @@ class ApplicationController < ActionController::Base
   
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :photo])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :nickname, :description, :cred, :photo])
   end
 end

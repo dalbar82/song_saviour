@@ -36,6 +36,7 @@
             <%# end  %>
             <% if song.audio.key.nil? == false  %>
                 <%= cl_video_tag song.audio.key, controls: true, style: "width: 100%; height:35px; " %>
+                <%=   cl_image_tag(song.audio.key, :height=>200, :width=>500, :flags=>"waveform", :color=>"black", :background=>"white", :resource_type=>"video") %>
             <% end %>
 
             <%= link_to "Edit", edit_song_path(song) %> |
@@ -47,4 +48,5 @@
     </div>
 
   </div>
+
 

@@ -24,4 +24,9 @@
 
 <p> <%= @song.lyrics %></p>
 
+<p> By: <%= @song.user.first_name %> <%= @song.user.last_name %>  </p>
+<p> Known as: <%= @song.user.nickname %></p>
+<p> Artist-desc:  <%= @song.user.description %></p>
+
+<p> Artist-cred: <%= @song.user.cred %></p>
 

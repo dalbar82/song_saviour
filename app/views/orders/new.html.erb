@@ -1,0 +1,16 @@
+
+<h2>Order summary</h2>
+<ul>
+  <% @current_cart.line_items.each do |line_item| %>
+    <li>Item: <%= line_item.song.name %>/ Price: <%= number_to_currency(line_item.song.price) %>
+  <% end %>
+</ul>
+<h3>Sub total: <%= number_to_currency(@current_cart.sub_total) %></h3>
+
+<%= link_to "Proceed to checkout", new_order_path %><br>
+
+<%= link_to "Empty cart", shopping_cart_path(@current_cart),method: :delete, data: {confirm: "Are you sure?"} %><br>
+
+<h2><%= current_user.first_name %></h2> <h2><%= current_user.last_name %></h2>
+
+<h2><%= current_user.email %></h2>

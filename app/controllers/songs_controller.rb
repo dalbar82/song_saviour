@@ -3,7 +3,12 @@ class SongsController < ApplicationController
   before_action :set_song, only: %i[ show, edit, update ]
 
   def index
+
     @songs = Song.all
+    @song = Song.new
+    if params[:query].present?
+      @songs = Song.global_search(params[:query])
+    end
   end
 
   def create
@@ -44,7 +49,11 @@ class SongsController < ApplicationController
     @song = Song.find(params[:id])
     @song.destroy
 
+
     redirect_to dashboard_path
+
+    # redirect_to songs_path
+
   end
 
   private

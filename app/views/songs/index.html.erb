@@ -1,30 +1,49 @@
-<h1>Song#index</h1>
-<p>Find me in app/views/song/index.html.erb</p>
+
+ <h2> Loads of cool songs - Let's make it easier to find that gold in the rough</h2>
+
+<%= form_tag songs_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Search da songs, using name of song, artists' name, genre or combos partials allowed "
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+
 
 <div class="d-flex">
 
-<% @songs.each do |song| %>
+<%= link_to "new song", new_song_path %>
 
-<div class="card"  > 
+  <% @songs.each do |song| %>
 
- <h4> <%= song.name  %>  </h4>
- <%= song.genre.genre %>
+  <div class="card"  > 
 
- <% if song.dollar == true  %>
-  <p>  Purchase $<%=song.price  %> </p>
- <%  else  %>
-  <p> Royalty: <%=  song.price  %>%  </p>
- <% end %>
- <p>Uploaded by: <%= song.user.first_name   %> <%= song.user.last_name %> </p>
+  <h4> <%= song.name  %>  </h4>
+  <%= song.genre.genre %>
 
- <%#link_to ??no_cart_route_as_yet do %>
-  <i class="fas fa-shopping-cart"></i>
- <%# end  %>
-
-  <% if song.audio.key.nil? == false  %>
-    <%= cl_video_tag song.audio.key, controls: true, style: "width: 100%; height:35px; " %>
+  <% if song.dollar == true  %>
+    <p>  Purchase $<%=song.price  %>
+  
+  <%  else  %>
+    <p> Royalty: <%=  song.price  %>%  </p>
   <% end %>
+  <p>Uploaded by: <%= song.user.first_name   %> <%= song.user.last_name %> </p>
+
+  <%#link_to ??no_cart_route_as_yet do %>
+    <i class="fas fa-shopping-cart"></i>
+  <%# end  %>
+
+    <% if song.audio.key.nil? == false  %>
+      <%= cl_video_tag song.audio.key, controls: true, style: "width: 100%; height:35px; " %>
+    <% end %>
+ 
+    <%= link_to "Edit", edit_song_path(song) %> |
+    <%= link_to "Delete", song_path(song), method: :delete, data: {confirm: "Are you sure?"} %>
+    <%= button_to "Add #{song.name} to cart", line_items_path(:song_id => song.id) %>
+
 <% end %>
+
 
 </div>
 

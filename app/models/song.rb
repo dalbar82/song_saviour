@@ -14,14 +14,26 @@ class Song < ApplicationRecord
   #   },
   #   using: { tsearch: { prefix: true }
   # }
- 
+  @song = Song.new
   include PgSearch::Model
-  pg_search_scope :global_search,
+    pg_search_scope :global_search,
     against: [ :name, :state ],
     associated_against: {
-      user: [ :first_name, :last_name ]
+      user: [ :first_name, :last_name ],
+      genre: [ :genre]
     },
     using: {
       tsearch: { prefix: true }
     }
+
+      # pg_search_scope :global_search,
+  #   against: [ :name, :state ],
+  #   associated_against: {
+  #     user: [ :first_name, :last_name ]
+  #   },
+  #   using: {
+  #     tsearch: { prefix: true }
+  #   }
+
+
 end

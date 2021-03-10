@@ -1,9 +1,8 @@
 class SongsController < ApplicationController
- 
+
   before_action :set_song, only: %i[ show, edit, update ]
- 
+
   def index
-    # will add in the search bar stuff soon
     @songs = Song.all
   end
 
@@ -42,6 +41,10 @@ class SongsController < ApplicationController
   end
 
   def destroy
+    @song = Song.find(params[:id])
+    @song.destroy
+
+    redirect_to dashboard_path
   end
 
   private

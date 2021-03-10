@@ -9,10 +9,10 @@ class LineItemsController < ApplicationController
     if current_cart.songs.include?(chosen_song)
       # Find the line_item with the chosen_product
       @line_item = current_cart.line_items.find_by(:song_id => chosen_song)
-      # Iterate the line_item's quantity by one
-      @line_item.quantity += 1
+      
     else
       @line_item = LineItem.new
+      @line_item.user = current_user
       @line_item.shopping_cart = current_cart
       @line_item.song = chosen_song
     end

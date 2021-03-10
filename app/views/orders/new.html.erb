@@ -1,21 +1,16 @@
-<h1>Order#new</h1>
-<p>Find me in app/views/order/new.html.erb</p>
 
+<h2>Order summary</h2>
+<ul>
+  <% @current_cart.line_items.each do |line_item| %>
+    <li>Item: <%= line_item.song.name %>/ Price: <%= number_to_currency(line_item.song.price) %>
+  <% end %>
+</ul>
+<h3>Sub total: <%= number_to_currency(@current_cart.sub_total) %></h3>
 
-<%= form_for(@order) do |f| %>
-  <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name, required: true, autofocus: true %>
-  </p>
-  <p>
-    <%= f.label :email %><br>
-    <%= f.email_field :email %>
-  </p>
-  <p>
-    <%= f.label :address %><br>
-    <%= f.text_area :address %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<%= link_to "Proceed to checkout", new_order_path %><br>
+
+<%= link_to "Empty cart", shopping_cart_path(@current_cart),method: :delete, data: {confirm: "Are you sure?"} %><br>
+
+<h2><%= current_user.first_name %></h2> <h2><%= current_user.last_name %></h2>
+
+<h2><%= current_user.email %></h2>

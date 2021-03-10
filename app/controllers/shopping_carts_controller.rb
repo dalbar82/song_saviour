@@ -16,7 +16,7 @@ class ShoppingCartsController < ApplicationController
     @shopping_cart = @current_cart
     @shopping_cart.destroy
     session[:shopping_cart_id] = nil
-    redirect_to root_path
+    redirect_to shopping_cart_path
   end
 
   def edit

@@ -9,4 +9,6 @@ class User < ApplicationRecord
   has_many :orders
   has_one_attached :photo
 
+  has_rich_text :description
+
 end

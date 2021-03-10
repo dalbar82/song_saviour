@@ -15,8 +15,11 @@
 
 <% if current_user.id == @song.user_id %>
 <p> you own this song </p>
- <%= cl_image_tag current_user.photo.key, margin: 0 -16, height: 400, width: 450, radius: 8, crop: :fill %>
+ <%  if current_user.photo.key.nil? == false %>
+   <%= cl_image_tag current_user.photo.key, margin: 0 -16, height: 400, width: 450, radius: 8, crop: :fill %>
+  <% end %>
 <% end %>
+
 
 
 <p> <%= @song.lyrics %></p>

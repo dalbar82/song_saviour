@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 2021_03_09_021504) do
   create_table "songs", force: :cascade do |t|
     t.string "name"
     t.integer "rating"
+    t.string "priceing_type"
     t.integer "price"
     t.string "state"
     t.bigint "user_id", null: false

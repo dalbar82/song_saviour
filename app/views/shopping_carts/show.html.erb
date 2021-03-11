@@ -1,3 +1,4 @@
+<br>
 <div class="container">
 
   <h1>Shopping Cart</h1>
@@ -5,20 +6,29 @@
 
   <ul>
     <% @current_cart.line_items.each do |line_item| %>
-      <li>Item: <%= line_item.song.name %>/ Price: <%= number_to_currency(line_item.song.price) %>
-      <ul>
-        <li>
-          <%= link_to "Remove item", line_item_path(line_item), method: :delete %>
+     <li class= "lineItemStyling">
+        <div>
+        Item: <%= line_item.song.name %>
+        </div>
+        <div>
+        Price: <%= number_to_currency(line_item.song.price) %>
+        </div>
+        <%= link_to "Remove", line_item_path(line_item), method: :delete %>
         </li>
-      </ul>
     <% end %>
+
   </ul>
+
   <br>
+
   <h3>Total: <%= number_to_currency(@current_cart.sub_total) %></h3>
 
+  <br>
+
   <div class="container-flex">
-    <%= link_to "Proceed to checkout", new_order_path(@current_cart) %><br>
-    <br>
-    <%= link_to "Empty cart", shopping_cart_path(@current_cart),method: :delete, data: {confirm: "Are you sure?"} %>
+    <div class="formlinks">
+      <%= link_to "Proceed to checkout", new_order_path %>
+      <%= link_to "Empty cart", shopping_cart_path(@current_cart),method: :delete, data: {confirm: "Are you sure?"} %>
+    </div>
   </div>
 </div>

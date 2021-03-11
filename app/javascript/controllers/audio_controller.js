@@ -14,7 +14,7 @@ export default class extends Controller {
   play() {
     console.log('PLay');
     this.videoTarget.play();
-    // this.containerTarget.classList.add('playing')
+    this.containerTarget.classList.add('playing')
     this.playTarget.style.display = "none";
     this.pauseTarget.style.display = "";
   }
@@ -22,7 +22,7 @@ export default class extends Controller {
   pause() {
     console.log('Pause');
     this.videoTarget.pause();
-    // this.containerTarget.classList.add('paused')
+    this.containerTarget.classList.add('paused')
     this.pauseTarget.style.display = "none"
     this.playTarget.style.display = "";
   }

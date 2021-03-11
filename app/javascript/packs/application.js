@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
@@ -31,3 +32,5 @@ document.addEventListener('turbolinks:load', () => {
 
 require("trix")
 require("@rails/actiontext")
+
+import 'controllers'

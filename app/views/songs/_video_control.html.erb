@@ -1,0 +1,10 @@
+<div data-controller="audio" data-audio-target="container">
+  <button data-audio-target="play" data-action="click->audio#play">play</button>
+   <button data-audio-target="pause" data-action="click->audio#pause">pause</button>
+
+
+  <div style= "display: none">
+    <%= cl_video_tag song.audio.key, controls: true, style: "width: 150px; height:35px", data: { audio_target: "video"} %>
+    <%# cl_image_tag(song.audio.key, :height=>30, :flags=>"waveform", :color=>"#FE9920", :background=>"transparent", :resource_type=>"video") %>
+  </div>
+</div>

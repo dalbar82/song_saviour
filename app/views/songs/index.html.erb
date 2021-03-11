@@ -22,36 +22,50 @@
       <!-- <div class="d-flex"> -->
 
           <% @songs.each do |song| %>
+
           <div class="card cardItem">
-            <div class="col-3">
+            <div>
+
+              <% if song.user.photo.key.nil? == false %>
+                <%= cl_image_tag song.user.photo.key, class: "songListImage"%>
+              <% else %>
+                <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615276848/SSlogoDarkTrans_v7auwe.svg", class: "songListImage" %>
+              <% end %>
+              <%#cl_image_tag(song.user.photo.key) if song.user.photo.attached? %>
+            </div>
+
+            <div class="col-3 listItems">
               <h4> <%= song.name  %>  </h4>
             </div>
-            <div class="col-1">
+
+            <div class="col-2 listItems">
               <p><%= song.user.nickname%></p>
             </div>
-            <div class="col-1">
+
+            <div class="col-2 listItems">
               <%= song.genre.genre %>
             </div>
-            <div class="col-1">
+
+            <div class="col-2 listItems">
               <% if song.dollar == true  %>
                 <p>$<%=song.price%>
               <%  else  %>
                 <p><%=song.price%>%</p>
               <% end %>
             </div>
-            <div class="col-1">
-            <% if song.audio.key.nil? == false  %>
-                <%= cl_video_tag song.audio.key, controls: true, style: "width: 150px; height:35px" %>
-                <%=   cl_image_tag(song.audio.key, :height=>30, :flags=>"waveform", :color=>"#FE9920", :background=>"transparent", :resource_type=>"video") %>
-            <% end %>
-            </div>
 
-            <%= link_to "Edit", edit_song_path(song) %>
-            <%= link_to "Delete", song_path(song), method: :delete, data: {confirm: "Are you sure?"} %>
+            <div class="col-2 listItems">
+               <% if song.audio.key.nil? == false  %>
+                <%= render "songs/video_control", song: song %>
+              <% else %>
+                <p>no audio</p>
+              <% end %>
+            </div>
 
             <%= link_to line_items_path(:song_id => song.id), method: :post do %>
               <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615423829/001-cart_cfrbrc.svg", width: 25, height: 25, alt: 'a face that is unnervingly happy'%>
             <% end %>
+            <%= link_to "view", song_path(song.id) %>
             </div>
             <% end %>
       <!-- </div> -->

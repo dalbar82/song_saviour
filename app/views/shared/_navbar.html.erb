@@ -1,7 +1,10 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="leftsideNav">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615421989/untitled_10_etluzf.svg" %>
     <% end %>
+    <%= link_to "+ Song", new_song_path, id:"newsong" %>
+  </div>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

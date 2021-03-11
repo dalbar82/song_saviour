@@ -1,6 +1,6 @@
-.indexSearch{
-  display: inline-flex;
-}
+// .indexSearch{
+//   display: inline-flex;
+// }
 
 .addToCartIcon{
   width:1rem;
@@ -33,6 +33,12 @@
   height: 40px;
 }
 
+.sidebar{
+  background-color: #313131;
+    height: 100vh;
+    box-shadow: -7px 0px 14px 2px #0c0c0c
+}
+
 .listItems{
   margin: auto;
 
@@ -40,3 +46,42 @@
     margin-bottom: 0;
   }
 }
+
+.magnifyicon{
+  width: 13px;
+  height: 24px;
+  z-index: 4;
+  position: absolute;
+  top: 15px;
+  left: 34px;
+}
+
+
+.indexSearch{
+  margin-left: 13px;
+}
+
+#searchBar {
+        position: relative;
+    top: 12px;
+    height: 30px;
+    color: white;
+    background-color: #4e4e4e;
+    border: none;
+    text-indent: 15px;
+  font-size: x-small;
+}
+
+#searchBar:active{
+      border: none;
+      color: #495057;
+      background-color: #4e4e4e;
+    }
+
+
+// #query{
+//   text-indent: 15px;
+//   font-size: x-small;
+// }
+
+

@@ -1,0 +1,33 @@
+
+<% my_first_chatroom_user = ChatroomUser.find( @chatroom.chatroom_user_ids.first ) %>
+<% my_sec_chatroom_user = ChatroomUser.find( @chatroom.chatroom_user_ids.last ) %>
+<%  my_first_user = User.find(my_first_chatroom_user[:user_id])  %>
+<%  my_sec_user = User.find(my_sec_chatroom_user[:user_id])  %>
+
+<h2> Private chat between: <%= my_first_user.nickname %> and  <%= my_sec_user.nickname %> </h2> 
+
+
+
+
+
+
+<div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+
+  <% @chatroom.messages.each do |message| %>
+    <div class="message-container" id="message-<%= message.id %>">
+      <i class="author">
+        <span><%= message.user.nickname %></span>
+        <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+      </i>
+      <p><%= message.content %></p>
+    </div>
+  <% end %>
+</div>
+
+<%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
+  <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
+
+<% end %>
+
+
+ 

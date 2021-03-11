@@ -18,5 +18,9 @@ Rails.application.routes.draw do
   resources :songs
   resources :orders
 
+  resources :chatrooms, only: [:show, :new, :create  ] do
+    resources :messages, only: :create
+  end
+
   resource :dashboard, only: [:show]
 end

@@ -30,3 +30,4 @@
 
 <p> Artist-cred: <%= @song.user.cred %></p>
 
+    <%= link_to "start new chat", chatrooms_path(chatroom: {user_id: @song.user_id}), method: :post %>  

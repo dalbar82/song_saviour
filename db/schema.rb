@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_10_195131) do
+ActiveRecord::Schema.define(version: 2021_03_12_000000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,21 @@ ActiveRecord::Schema.define(version: 2021_03_10_195131) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "chatroom_users", force: :cascade do |t|
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chatroom_id"], name: "index_chatroom_users_on_chatroom_id"
+    t.index ["user_id"], name: "index_chatroom_users_on_user_id"
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "genres", force: :cascade do |t|
     t.string "genre"
     t.datetime "created_at", precision: 6, null: false
@@ -70,6 +85,14 @@ ActiveRecord::Schema.define(version: 2021_03_10_195131) do
     t.index ["shopping_cart_id"], name: "index_line_items_on_shopping_cart_id"
     t.index ["song_id"], name: "index_line_items_on_song_id"
     t.index ["user_id"], name: "index_line_items_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "chatroom_user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chatroom_user_id"], name: "index_messages_on_chatroom_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -137,10 +160,13 @@ ActiveRecord::Schema.define(version: 2021_03_10_195131) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chatroom_users", "chatrooms"
+  add_foreign_key "chatroom_users", "users"
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "shopping_carts"
   add_foreign_key "line_items", "songs"
   add_foreign_key "line_items", "users"
+  add_foreign_key "messages", "chatroom_users"
   add_foreign_key "orders", "shopping_carts"
   add_foreign_key "orders", "songs"
   add_foreign_key "orders", "users"

@@ -9,6 +9,11 @@ class User < ApplicationRecord
   has_many :orders
   has_one_attached :photo
 
+  has_many :chatroom_users
+  has_many :messages, through: :chatroom_users
+  has_many :chatrooms, through: :chatroom_users
+  
+
   has_rich_text :description
 
 end

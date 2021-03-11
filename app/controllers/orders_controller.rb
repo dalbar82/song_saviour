@@ -4,15 +4,23 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-    @current_cart.line_items.each do |item|
-      @order.line_items << item     
-      item.cart_id = nil
-    end
-    @order.save
-    Cart.destroy(session[:cart_id])
-    session[:cart_id] = nil
-    redirect_to root_path
+    current_cart = @current_cart
+    order  = Order.create!(total_price: current_cart.sub_total, state: 'pending', user: current_user)
+    price = current_cart.sub_total * 100
+    session = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      line_items: [{
+        name: current_user.nickname,
+        amount: price,
+        currency: 'aud',
+        quantity: 1
+      }],
+      success_url: order_url(order),
+      cancel_url: order_url(order)
+    )
+  
+    order.update(checout_session_id: session.id)
+    redirect_to new_order_payment_path(order)
   end
 
   def new
@@ -20,7 +28,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+    @order = current_user.orders.find(params[:id])
   end
 
   def edit
@@ -30,11 +38,14 @@ class OrdersController < ApplicationController
   end
 
   def destroy
+    @order = Order.find(params[:id])
+    @order.destroy
+    redirect_to orders_path(@order)
   end
 
   private
   def order_params
-    params.require(:order).permit(:name, :email, :address, :pay_method)
+    params.require(:order).permit(:name, :email, :address, :pay_method, :song_id, :shopping_cart_id, :state)
   end
   
 end

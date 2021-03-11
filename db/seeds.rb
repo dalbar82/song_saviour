@@ -44,7 +44,7 @@ Genre.create!(genre: "Bluegrass")
 Genre.create!(genre: "Jazz")
 
 Song.create!(name: "Always be my Baeby, Byeongchan" , price: 500, state: "available", dollar: true, user_id: 1, genre_id:9 )
-Song.create!(name: "Seeding forever" , price: 1, state: "pending", dollar: false, user_id: 2, genre_id:4 )
+Song.create!(name: "Seeding forever" , price: 0, state: "pending", dollar: false, user_id: 2, genre_id:4 )
 Song.create!(name: "Filiharmonic Fling " , price: 250, state: "available", dollar: true, user_id: 3, genre_id:7 )
 Song.create!(name: "McCarthy Mulestep" , price: 350, state: "available", dollar: true, user_id: 6, genre_id:25 )
 Song.create!(name: "Hold me close I am Shivika-ing tonight " , price: 750, state: "available", dollar: true, user_id: 4, genre_id:6 )

@@ -15,8 +15,13 @@ Rails.application.routes.draw do
   delete 'line_items/:id' => "line_items#destroy"
   post 'line_items' => "line_items#create"
   
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
+  
   resources :songs
-  resources :orders
+
+  resources :orders do
+    resources :payments, only: [:new]
+  end
 
   resource :dashboard, only: [:show]
 end

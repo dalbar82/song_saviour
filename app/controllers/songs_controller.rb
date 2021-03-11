@@ -50,9 +50,9 @@ class SongsController < ApplicationController
     @song.destroy
 
 
-    redirect_to dashboard_path
+    # redirect_to dashboard_path
 
-    # redirect_to songs_path
+    redirect_to songs_path
 
   end
 

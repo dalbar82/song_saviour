@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615276848/SSlogoDarkTrans_v7auwe.svg" %>
+    <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615421989/untitled_10_etluzf.svg" %>
     <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +23,7 @@
         </li>
 
         <li class="nav-item">
-          <%= link_to "Cart", "#", class: "nav-link" %>
+          <%= link_to "Cart", shopping_cart_path(current_user), class: "nav-link" %>
         </li>
 
         <li class="nav-link">

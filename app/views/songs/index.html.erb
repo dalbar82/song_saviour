@@ -8,7 +8,7 @@
           <%= text_field_tag :query,
             params[:query],
             class: "form-control",
-            placeholder: "Search da songs, using name of song, artists' name, genre or combos partials allowed "
+            placeholder: "Search da songs"
           %>
           <%= submit_tag "Search", class: "btn btn-primary" %>
         <% end %>
@@ -17,35 +17,45 @@
     </div>
 
 
-    <div class="col-9">
+    <div class="col-9 songCol">
 
-      <div class="d-flex">
+      <!-- <div class="d-flex"> -->
+
           <% @songs.each do |song| %>
-          <div class="card"  >
-            <h4> <%= song.name  %>  </h4>
-            <%= song.genre.genre %>
-            <% if song.dollar == true  %>
-              <p>  Purchase $<%=song.price  %>
-            <%  else  %>
-              <p> Royalty: <%=  song.price  %>%  </p>
-            <% end %>
-            <p>Uploaded by: <%= song.user.first_name   %> <%= song.user.last_name %> </p>
-
-            <%#link_to ??no_cart_route_as_yet do %>
-              <!-- <i class="fas fa-shopping-cart"></i> -->
-            <%# end  %>
+          <div class="card cardItem">
+            <div class="col-3">
+              <h4> <%= song.name  %>  </h4>
+            </div>
+            <div class="col-1">
+              <p><%= song.user.nickname%></p>
+            </div>
+            <div class="col-1">
+              <%= song.genre.genre %>
+            </div>
+            <div class="col-1">
+              <% if song.dollar == true  %>
+                <p>$<%=song.price%>
+              <%  else  %>
+                <p><%=song.price%>%</p>
+              <% end %>
+            </div>
+            <div class="col-1">
             <% if song.audio.key.nil? == false  %>
-                <%= cl_video_tag song.audio.key, controls: true, style: "width: 100%; height:35px; " %>
-                <%=   cl_image_tag(song.audio.key, :height=>200, :width=>500, :flags=>"waveform", :color=>"black", :background=>"white", :resource_type=>"video") %>
+                <%= cl_video_tag song.audio.key, controls: true, style: "width: 150px; height:35px" %>
+                <%=   cl_image_tag(song.audio.key, :height=>30, :flags=>"waveform", :color=>"#FE9920", :background=>"transparent", :resource_type=>"video") %>
             <% end %>
+            </div>
 
-            <%= link_to "Edit", edit_song_path(song) %> |
+            <%= link_to "Edit", edit_song_path(song) %>
             <%= link_to "Delete", song_path(song), method: :delete, data: {confirm: "Are you sure?"} %>
-            <%= button_to "Add #{song.name} to cart", line_items_path(:song_id => song.id) %>
+
+            <%= link_to line_items_path(:song_id => song.id), method: :post do %>
+              <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615423829/001-cart_cfrbrc.svg", width: 25, height: 25, alt: 'a face that is unnervingly happy'%>
             <% end %>
-          </div>
-      </div>
-    </div>
+            </div>
+            <% end %>
+      <!-- </div> -->
+
 
   </div>
 

@@ -15,6 +15,7 @@ class ChatroomsController < ApplicationController
       @user2 = ChatroomUser.create(user: User.find(chatroom_params[:user_id].to_i))
       @user2.chatroom = @chatroom
       @user2.save
+
       redirect_to chatroom_url(@chatroom)
     else
       render :new

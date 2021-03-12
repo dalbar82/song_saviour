@@ -1,0 +1,21 @@
+.playpausebutton{
+    background-color: #e91e63;
+    padding: 10px;
+    width: 15px;
+    height: 15px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+}
+
+.playicon{
+    position: relative;
+    bottom: 5px;
+    right: 4px;
+}
+
+.pauseicon{
+    position: relative;
+    bottom: 5px;
+    right: 5px;
+}

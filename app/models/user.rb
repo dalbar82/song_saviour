@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :shopping_carts
   has_many :songs
   has_many :orders
+  has_many :bookings
   has_one_attached :photo
 
   has_rich_text :description

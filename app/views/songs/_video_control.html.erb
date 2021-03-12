@@ -1,0 +1,11 @@
+<div data-controller="audio" data-audio-target="container">
+  <button class="playpausebutton" data-audio-target="play" data-action="click->audio#play"> <%= cl_image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615456431/untitled_11_nommw2.svg", style: "width: 10px; height:10px", class: "playicon"  %> </button>
+   <button class="playpausebutton" data-audio-target="pause" data-action="click->audio#pause"> <%= cl_image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615457819/untitled_12_uohfee.svg", style: "width: 10px; height:10px", class: "pauseicon"  %> </button>
+
+
+
+  <div style= "display: none">
+    <%= cl_video_tag song.audio.key, controls: true, style: "width: 150px; height:35px", data: { audio_target: "video"} %>
+    <%# cl_image_tag(song.audio.key, :height=>30, :flags=>"waveform", :color=>"#FE9920", :background=>"transparent", :resource_type=>"video") %>
+  </div>
+</div>

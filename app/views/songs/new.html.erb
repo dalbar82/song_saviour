@@ -1,34 +1,8 @@
-<h1>Song#new</h1>
-<p>Find me in app/views/song/new.html.erb</p>
 
-<p> Just checking Cloudinary is set up; don't forget it uses the publicID </p>
-<%= cl_image_tag("vrm7g8j4a5jcxsxoaysn",
-      width: 400, height: 300, crop: :fill) %>
-
-<%#   cl_upload_tag(:#, :resource_type => "video", 
-  :eager => [{:streaming_profile => "full_hd", :format => "m3u8"}], 
-  :eager_async => true, 
-  :eager_notification_url => "https://mysite.example.com/notify_endpoint", 
-  :html => {:id => "my_upload_tag"})  
- %>
-
+<div class="container">
+<h1>Add your song</h1>
+<br>
 
   <%=   render 'form', song: @song  %>
 
-<%# cl_video_tag "u3toxc9drfqclm8x2hpr", controls: true, style: "width: 50%; " %>
-<%# audio = cl_video_tag "u3toxc9drfqclm8x2hpr"  %>
-
-
-
- <!-- Note: Use the video resource type for all video assets as well as for audio files, such as .mp3. -->
-
-
-<%# simple_form_for @song do |f|  %>
-<%# f.input :name, label: "Name of song"   %>
-<%# f.input :audio, as: :file %>
-<%# f.input :dollar,  as: :radio_buttons, label: "Is song IP being bought outright? / if no, will assign to royalty percent type purchase"  %>
-<%# f.input :price, label: "Enter price in dollars or royalty percentage" %>
-<%# f.association :genre, label_method: :genre %>
-<%# f.input :lyrics, as: :rich_text_area, label: "lyrics", class: "lyrics_text" %>   
-<%# f.submit  %>
-<%# end %>
+</div>

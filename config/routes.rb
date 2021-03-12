@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'bookings/index'
+  get 'bookings/create'
+  get 'bookings/show'
+  get 'bookings/edit'
+  get 'bookings/destroy'
+  get 'bookings/new'
   # devise_for :views
   devise_for :users
   root to: 'pages#home'
@@ -17,7 +23,9 @@ Rails.application.routes.draw do
   
   mount StripeEvent::Engine, at: '/stripe-webhooks'
   
-  resources :songs
+  resources :songs do
+    resources :bookings, only: [:index, :show, :new, :update, :edit, :create]
+  end
 
   resources :orders do
     resources :payments, only: [:new]

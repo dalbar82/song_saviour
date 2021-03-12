@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
     current_cart = @current_cart
     order  = Order.create!(total_price: current_cart.sub_total, state: 'pending', user: current_user)
     price = current_cart.sub_total * 100
+    order.add_line_items(current_cart)
     session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [{
@@ -45,7 +46,7 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:name, :email, :address, :pay_method, :song_id, :shopping_cart_id, :state)
+    params.require(:order).permit(:name, :email, :address, :pay_method, :song_id, :shopping_cart_id, :state, line_items: [])
   end
   
 end

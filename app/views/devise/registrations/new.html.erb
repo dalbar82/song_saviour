@@ -1,3 +1,6 @@
+<br>
+
+<div class="container">
 <h2>Sign up</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -28,17 +31,18 @@
     <%= f.input :nickname,
                 required: true,
                 label: "We are all friends here, give us a nickname or artist name to use",
-                input_html: { autocomplete: "nickname" } %>            
+                input_html: { autocomplete: "nickname" } %>
     <%= f.input :description,
                 required: false,
                 as: :rich_text_area, label: "Short description of yourself as an artist or a buyer",
-                class: "description_text" %>   
+                class: "description_text" %>
   </div>
 
-   
+
   <div class="form-actions">
     <%= f.button :submit, "Sign up" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>

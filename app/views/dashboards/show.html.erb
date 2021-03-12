@@ -68,7 +68,21 @@
         <div class="container">
 
           <div class="row ">
+             <% @bookings.each do |book| %>
+      <div class="card col-4 p-2 m-4" style="width: 30px;">
+              <% if book.song.user.photo.key.nil? == false %>
+          <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
 
+        <% else %>
+          <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615276848/SSlogoDarkTrans_v7auwe.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+         <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= book.song.name %></h5>
+          <p class="card-text"><%= book.status %></p>
+          <h1><%= link_to "cancel enquiry", bookings_new_path(book), method: :delete, data: { confirm: "Are you sure?" } %></h1>
+        </div>
+      </div>
+    <% end %>
           </div>
 
         </div>

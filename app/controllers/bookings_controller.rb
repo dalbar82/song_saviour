@@ -4,6 +4,16 @@ class BookingsController < ApplicationController
   end
 
   def create
+    @song = Song.find(params[:song_id])
+    @booking = Booking.create(status: "pending")
+    @booking.song = @song
+    @booking.user = current_user
+
+    if @booking.save
+      redirect_to dashboard_path(@booking), notice: 'successfully created an enquiry'
+    else
+      render :new
+    end
   end
 
   def show

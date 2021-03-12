@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   mount StripeEvent::Engine, at: '/stripe-webhooks'
   
   resources :songs do
-    resources :bookings, only: [:index, :show, :new, :update, :edit, :create]
+    resources :bookings, only: [:index, :show, :new, :update, :edit, :create, :destroy]
   end
 
   resources :orders do

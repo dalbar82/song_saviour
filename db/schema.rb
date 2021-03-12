@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_10_195131) do
+ActiveRecord::Schema.define(version: 2021_03_12_014810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,18 @@ ActiveRecord::Schema.define(version: 2021_03_10_195131) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "bookings", force: :cascade do |t|
+    t.string "status"
+    t.integer "total_price"
+    t.string "enquire_date"
+    t.bigint "user_id", null: false
+    t.bigint "song_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["song_id"], name: "index_bookings_on_song_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
   create_table "genres", force: :cascade do |t|
     t.string "genre"
     t.datetime "created_at", precision: 6, null: false
@@ -63,9 +75,9 @@ ActiveRecord::Schema.define(version: 2021_03_10_195131) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "song_id", null: false
-    t.bigint "shopping_cart_id", null: false
     t.bigint "user_id", null: false
     t.bigint "order_id"
+    t.bigint "shopping_cart_id"
     t.index ["order_id"], name: "index_line_items_on_order_id"
     t.index ["shopping_cart_id"], name: "index_line_items_on_shopping_cart_id"
     t.index ["song_id"], name: "index_line_items_on_song_id"
@@ -77,9 +89,11 @@ ActiveRecord::Schema.define(version: 2021_03_10_195131) do
     t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "song_id", null: false
     t.bigint "user_id", null: false
-    t.bigint "shopping_cart_id", null: false
+    t.string "state"
+    t.string "checout_session_id"
+    t.bigint "song_id"
+    t.bigint "shopping_cart_id"
     t.index ["shopping_cart_id"], name: "index_orders_on_shopping_cart_id"
     t.index ["song_id"], name: "index_orders_on_song_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
@@ -137,6 +151,8 @@ ActiveRecord::Schema.define(version: 2021_03_10_195131) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookings", "songs"
+  add_foreign_key "bookings", "users"
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "shopping_carts"
   add_foreign_key "line_items", "songs"

@@ -7,6 +7,7 @@
     <p><%= current_user.email %></p>
   </div>
 
+
   <ul>
     <% @current_cart.line_items.each do |line_item| %>
       <li class= "lineItemStyling">
@@ -26,7 +27,10 @@
 
   <div class="container-flex">
     <div class="formlinks">
-      <%= link_to "Proceed to checkout", new_order_path %>
+      <%= form_tag orders_path do %>
+  <%= hidden_field_tag 'song_id', @current_cart %>
+  <%= submit_tag 'Submit Order', class: 'btn btn-primary' %>
+<% end %>
       <%= link_to "Empty cart", shopping_cart_path(@current_cart),method: :delete, data: {confirm: "Are you sure?"} %>
     </div>
   </div>

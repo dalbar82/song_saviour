@@ -3,6 +3,7 @@ class Song < ApplicationRecord
   belongs_to :genre
   has_many :orders
   has_many :line_items, dependent: :destroy
+  has_many :bookings 
 
   has_one_attached :audio
   has_rich_text :lyrics

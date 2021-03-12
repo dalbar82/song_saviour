@@ -12,16 +12,17 @@
 
 
 <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
-
-  <% @chatroom.messages.each do |message| %>
-    <div class="message-container" id="#message-<%= message.id %>">
-      <i class="author">
-        <span><%= message.chatroom_user.user.nickname %></span>
-        <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-      </i>
-      <p><%= message.content %></p>
-   
-    </div>
+  <%  if @chatroom.users.include? current_user %> 
+    <% @chatroom.messages.each do |message| %>
+      <div class="message-container" id="#message-<%= message.id %>">
+        <i class="author">
+          <span><%= message.chatroom_user.user.nickname %></span>
+          <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+        </i>
+        <p><%= message.content %></p>
+    
+      </div>
+    <% end %>
   <% end %>
 </div>
 

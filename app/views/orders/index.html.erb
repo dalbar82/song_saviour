@@ -3,12 +3,14 @@
 <h2>All Orders</h2>
 
 <% @orders.each do |order| %>
-  <p>Name: <%= order.name %></p>
-  <p>Email: <%= order.email %></p>
-  <p>Line Items: </p>
-  <ul>
-    <% order.line_items.each do |item| %>
-    <li><%= item.quantity %> x <%= item.product.name %></li>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Order id: <%= order.id %></h5>
+    <h6 class="card-subtitle mb-2 text-muted">date created <%= order.created_at %></h6>
+    <p class="card-text">State: <%= order.state %></p>
+    <% if order.state == 'pending' %>
+    <%= link_to "cancel order", order_path(order), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %>
     <% end %>
-  </ul>
-<% end
+  </div>
+</div>
+<% end %>

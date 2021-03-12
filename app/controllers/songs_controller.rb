@@ -1,6 +1,6 @@
 class SongsController < ApplicationController
 
-  before_action :set_song, only: %i[ show, edit, update ]
+  before_action :set_song, only: %i[show edit update]
 
   def index
 
@@ -32,7 +32,7 @@ class SongsController < ApplicationController
   end
 
   def edit
-    @song = Song.find(params[:id])
+
   end
 
   def update

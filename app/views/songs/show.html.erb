@@ -20,18 +20,21 @@
     <% end %>
   </p>
 
-  <p>Owner:
+  <p>Owned by:
     <% if current_user.id == @song.user_id %>
     You own this song
     <% end %>
     </p>
 
-  <p> <%= @song.lyrics %></p>
+  <p> Lyrics: <%= @song.lyrics %></p>
 
-  <p> By: <%= @song.user.first_name %> <%= @song.user.last_name %>  </p>
+  <p> Uploader: <%= @song.user.first_name %> <%= @song.user.last_name %>  </p>
   <p> Known as: <%= @song.user.nickname %></p>
   <p> Artist-desc:  <%= @song.user.description %></p>
 
   <p> Artist-cred: <%= @song.user.cred %></p>
+
+  <%= link_to "edit", edit_song_path(@song) %>
+  <%# link_to edit_song_path(:song_id => song.id) %>
 
 </div>

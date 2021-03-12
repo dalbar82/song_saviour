@@ -17,60 +17,96 @@
 
 
 
+     <div class="col-10 songCol">
 
+      <table class="table table-dark table-striped">
+        <thead>
+          <tr>
 
-    <div class="col-10 songCol">
+            <th scope="col"></th>
 
-      <!-- <div class="d-flex"> -->
+            <th scope="col">Name</th>
+
+            <th scope="col">Uploader</th>
+
+            <th scope="col">Genres</th>
+
+            <th scope="col">Price</th>
+
+            <th scope="col"></th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+
 
           <% @songs.each do |song| %>
 
-          <div class="card cardItem">
-            <div>
+          <tr class=indextableRow>
 
-              <% if song.user.photo.key.nil? == false %>
-                <%= cl_image_tag song.user.photo.key, class: "songListImage"%>
-              <% else %>
-                <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615276848/SSlogoDarkTrans_v7auwe.svg", class: "songListImage" %>
-              <% end %>
+            <!-- <th scope="row">1</th> -->
+               <td>
+
+                <% if song.user.photo.key.nil? == false %>
+                  <%= cl_image_tag song.user.photo.key, class: "songListImage"%>
+                <% else %>
+                  <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615276848/SSlogoDarkTrans_v7auwe.svg", class: "songListImage" %>
+                <% end %>
               <%#cl_image_tag(song.user.photo.key) if song.user.photo.attached? %>
-            </div>
+              </td>
 
-            <div class="col-3 listItems">
-              <h4> <%= song.name  %>  </h4>
-            </div>
 
-            <div class="col-2 listItems">
-              <p><%= song.user.nickname%></p>
-            </div>
+              <!-- <th scope="row"></th> -->
+              <td>
+                <p> <%= song.name  %>  </p>
+              </td>
 
-            <div class="col-2 listItems">
-              <%= song.genre.genre %>
-            </div>
+              <!-- <th scope="row"></th> -->
+              <td>
+                <p><%= song.user.nickname%></p>
+              </td>
 
-            <div class="col-2 listItems">
+
+              <!-- <th scope="row"></th> -->
+              <td>
+               <p> <%= song.genre.genre %></p>
+              </td>
+
+            <!-- <th scope="row"></th> -->
+              <td>
               <% if song.dollar == true  %>
                 <p>$<%=song.price%>
               <%  else  %>
                 <p><%=song.price%>%</p>
               <% end %>
-            </div>
+            </td>
 
-            <div class="col-2 listItems">
+            <!-- <th scope="row"></th> -->
+              <td>
                <% if song.audio.key.nil? == false  %>
                 <%= render "songs/video_control", song: song %>
               <% else %>
                 <p>no audio</p>
               <% end %>
-            </div>
+            </td>
 
+            <!-- <th scope="row"></th> -->
+              <td>
             <%= link_to line_items_path(:song_id => song.id), method: :post do %>
               <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615423829/001-cart_cfrbrc.svg", width: 25, height: 25, alt: 'a face that is unnervingly happy'%>
             <% end %>
-            <%= link_to "view", song_path(song.id) %>
-            </div>
+            <%= link_to "view", song_path(song.id), class: "viewSonglink" %>
+            </td>
+
+            </tr>
+
             <% end %>
-      <!-- </div> -->
+
+
+          </tbody>
+        </table>
+      </div>
 
 
   </div>

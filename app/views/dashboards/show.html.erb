@@ -71,17 +71,27 @@
        <div class="tab-pane fade " id="v-pills-haggle" role="tabpanel" aria-labelledby="v-pills-haggle-tab">
         <div class="container">
 
-          <div class="row ">
+          <!-- div class="row "-->
                   <h2>This is where I can list all of the available chatrooms I believe!</h2>
                  
                 
         
-                  <%=  Chatroom.all.each  do |chat|  %>
+                  <% Chatroom.all.each  do |chat|  %>
                    <% if chat.user_ids.include? current_user.id %>
-                      <p>  <%=  chat.id %> <%= chat.user_ids %>    <br> </p> 
+                    <% users = User.find(chat.user_ids)  %>
+                    <% if users.first != current_user  %>
+                      <% haggler = users.first.nickname %> 
+                    <% else %>
+                      <% haggler = users.last.nickname %>
+                    <% end %>
+                     
+                       <h4><%= link_to "Rejoin the haggle with  #{haggler}", chatroom_path(id: chat.id)    %> </h4>
+                          <%#  chat.id %> <%# chat.user_ids %>  
+                            <%# haggler  %> 
+                      <br>
                    <%  end %> 
                   <% end %>
-          </div>
+          <!--/div -->
 
         </div>
       </div>

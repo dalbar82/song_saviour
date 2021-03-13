@@ -73,18 +73,17 @@
 
           <!-- div class="row "-->
                   <h2>Ongoing Haggles</h2>
-                 
-                
-        
+
                   <% Chatroom.all.reverse.each  do |chat|  %>
-                   <% if chat.user_ids.include? current_user.id %>
-                    <% users = User.find(chat.user_ids)  %>
-                    <% if users.first != current_user  %>
-                      <% haggler = users.first.nickname %> 
-                    <% else %>
-                      <% haggler = users.last.nickname %>
-                    <% end %>
-                     
+                    <% if chat.hidden == false %>
+                      <% if chat.user_ids.include? current_user.id %>
+                        <% users = User.find(chat.user_ids)  %>
+                          <% if users.first != current_user  %>
+                            <% haggler = users.first.nickname %> 
+                          <% else %>
+                            <% haggler = users.last.nickname %>
+                      <% end %>
+                    <% end %> 
                        <h4><%= link_to "Rejoin the haggle with  #{haggler}", chatroom_path(id: chat.id)    %>   </h4>
                         <%   if chat.messages.exists? %>
                           <% if chat.messages.last.user != current_user %>  

@@ -1,0 +1,122 @@
+// .indexSearch{
+//   display: inline-flex;
+// }
+
+.addToCartIcon{
+  width:1rem;
+}
+
+.table-dark{
+  color: #cacaca;
+    background-color: #222222;
+}
+
+.table-dark th, .table-dark td, .table-dark thead th {
+
+    border: none;
+}
+
+.table-dark.table-striped tbody tr:nth-of-type(odd){
+  background-color: #313131;
+}
+
+ .indextableRow{
+  p{
+    font-size: small;
+    color: #b9b9b9;
+    font-family: "montserrat", "Helvetica", "sans-serif";
+    font-weight: 500;
+    line-height: 2;
+    margin: auto 10px;
+  }
+ }
+
+#enquire{
+      font-size: x-large;
+    color: #1e80f5;
+    text-decoration: none;
+    background-color: transparent;
+    font-weight: 900;
+    padding: 0 5px;
+}
+
+.table-dark thead th {
+    border: none;
+    font-size: small;
+    padding-left: 5px;
+}
+
+.viewSonglink{
+  color: #da326f;
+    text-decoration: none;
+    background-color: transparent;
+    margin-left: 15px;
+}
+
+.cardItem{
+  background-color: #313131;
+    margin-top: 1px;
+    display: -webkit-box;
+    padding: 5px;
+        height: 50px;
+    font-size: x-small;
+
+    h4{
+      font-size: x-small;
+      color: #b9b9b9;
+      font-family: "montserrat", "Helvetica", "sans-serif";
+    font-weight: 500;
+    line-height: 2;
+    margin: auto 10px;
+    }
+}
+
+.songCol{
+  display: inline-block;
+  padding-left: 0;
+}
+
+.songListImage{
+  width: 40px;
+  height: 40px;
+}
+
+.sidebar{
+  background-color: #313131;
+    height: 100vh;
+    box-shadow: inset 0px -1px 5px 0px #151515;
+}
+
+.magnifyicon{
+  width: 13px;
+  height: 24px;
+  z-index: 4;
+  position: absolute;
+  top: 15px;
+  left: 34px;
+}
+
+.indexSearch{
+  margin-left: 13px;
+}
+
+#searchBar {
+        position: relative;
+    top: 12px;
+    height: 30px;
+    color: white;
+    background-color: #4e4e4e;
+    border: none;
+    text-indent: 15px;
+  font-size: x-small;
+}
+
+#searchBar:active{
+      border: none;
+      color: #495057;
+      background-color: #4e4e4e;
+    }
+
+
+
+

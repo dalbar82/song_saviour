@@ -1,34 +1,49 @@
-<h1>Song#show</h1>
-<p>Find me in app/views/song/show.html.erb</p>
+<div class="container">
+  <br>
+  <h1><%= @song.name %></h1>
 
-<h4>  Song Title: <%= @song.name %></h4>
+  <br>
 
+  <p><% if @song.audio.key.nil? == false  %>
+    <%= cl_video_tag @song.audio.key, controls: true, style: "width: 25%; height:35px; " %>
+    <% end %>
+  </p>
 
-<% if @song.audio.key.nil? == false  %>
-  <%= cl_video_tag @song.audio.key, controls: true, style: "width: 25%; height:35px; " %>
-<% end %>
-<% if @song.dollar == true  %>
- Available for outright purchase man! $<%=@song.price  %>
-<%  else  %>
- This ones on a royalty deal for <%=  @song.price  %> % of the sweet cash you make off it
-<% end %>
+  <br>
 
-<% if current_user.id == @song.user_id %>
-<p> you own this song </p>
- <%  if current_user.photo.key.nil? == false %>
-   <%= cl_image_tag current_user.photo.key, margin: 0 -16, height: 400, width: 450, radius: 8, crop: :fill %>
-  <% end %>
-<% end %>
+  <p>
+    Cost:
+    <% if @song.dollar == true  %>
+     Available for outright purchase man! $<%=@song.price  %>
+    <%  else  %>
+     This ones on a royalty deal for <%=  @song.price  %> % of the sweet cash you make off it
+    <% end %>
+  </p>
 
+  <p>Owned by:
+    <% if current_user.id == @song.user_id %>
+    You own this song
+    <% end %>
+    </p>
 
+  <p> Lyrics: <%= @song.lyrics %></p>
 
+<<<<<<< HEAD
 
 <p> <%= @song.lyrics %></p>
+=======
+  <p> Uploader: <%= @song.user.first_name %> <%= @song.user.last_name %>  </p>
+  <p> Known as: <%= @song.user.nickname %></p>
+  <p> Artist-desc:  <%= @song.user.description %></p>
+>>>>>>> master
 
-<p> By: <%= @song.user.first_name %> <%= @song.user.last_name %>  </p>
-<p> Known as: <%= @song.user.nickname %></p>
-<p> Artist-desc:  <%= @song.user.description %></p>
+  <p> Artist-cred: <%= @song.user.cred %></p>
 
-<p> Artist-cred: <%= @song.user.cred %></p>
+  <%= link_to "edit", edit_song_path(@song) %>
+  <%# link_to edit_song_path(:song_id => song.id) %>
 
+<<<<<<< HEAD
     <%= link_to "start new chat", chatrooms_path(chatroom: {user_id: @song.user_id}), method: :post %>  
+=======
+</div>
+>>>>>>> master

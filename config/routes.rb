@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'bookings/index'
+  get 'bookings/create'
+  get 'bookings/show'
+  get 'bookings/edit'
+  get 'bookings/destroy'
+  get 'bookings/new'
   # devise_for :views
   devise_for :users
   root to: 'pages#home'
@@ -15,8 +21,15 @@ Rails.application.routes.draw do
   delete 'line_items/:id' => "line_items#destroy"
   post 'line_items' => "line_items#create"
   
-  resources :songs
-  resources :orders
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
+  
+  resources :songs do
+    resources :bookings, only: [:index, :show, :new, :update, :edit, :create, :destroy]
+  end
+
+  resources :orders do
+    resources :payments, only: [:new]
+  end
 
   resources :chatrooms, only: [:show, :new, :create  ] do
     resources :messages, only: :create

@@ -3,3 +3,9 @@
 
 const channels = require.context('.', true, /_channel\.js$/)
 channels.keys().forEach(channels)
+
+
+
+    $('.indexSearch').find('.magnifyicon').click(function(){
+        $('#indexSearch').prop("type", "text");
+    })

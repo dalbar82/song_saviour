@@ -1,6 +1,6 @@
 class SongsController < ApplicationController
 
-  before_action :set_song, only: %i[ show, edit, update ]
+  before_action :set_song, only: %i[show edit update]
 
   def index
 
@@ -32,7 +32,7 @@ class SongsController < ApplicationController
   end
 
   def edit
-    @song = Song.find(params[:id])
+
   end
 
   def update
@@ -46,13 +46,14 @@ class SongsController < ApplicationController
   end
 
   def destroy
+
     @song = Song.find(params[:id])
     @song.destroy
 
 
-    redirect_to dashboard_path
+    # redirect_to dashboard_path
 
-    # redirect_to songs_path
+    redirect_to songs_path
 
   end
 

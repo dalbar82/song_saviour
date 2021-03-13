@@ -72,11 +72,11 @@
         <div class="container">
 
           <!-- div class="row "-->
-                  <h2>This is where I can list all of the available chatrooms I believe!</h2>
+                  <h2>Ongoing Haggles</h2>
                  
                 
         
-                  <% Chatroom.all.each  do |chat|  %>
+                  <% Chatroom.all.reverse.each  do |chat|  %>
                    <% if chat.user_ids.include? current_user.id %>
                     <% users = User.find(chat.user_ids)  %>
                     <% if users.first != current_user  %>

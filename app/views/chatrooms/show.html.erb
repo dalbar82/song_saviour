@@ -31,6 +31,7 @@
   <%= f.input :content, label: false, placeholder: "Message -#{@chatroom.name}" %>
 
 <% end %>
+ <h1><%# link_to "remove this chat", chatroom_path(@chatroom), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></h1>
 
-
+<!-- trying to remove a chat violates a foreign key restraint, could hide them , not sure if we need to for our purposes -->
  

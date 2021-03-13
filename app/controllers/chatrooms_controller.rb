@@ -23,7 +23,17 @@ class ChatroomsController < ApplicationController
 
   end
 
+  def destroy
 
+    @chatroom = Chatroom.find(params[:id])
+    @chatroom.destroy
+
+
+    # redirect_to dashboard_path
+
+    redirect_to dashboard_path
+
+  end
   # def create
   #   @song = Song.new(song_params)
   #   @song.state = "available"

@@ -85,10 +85,14 @@
                       <% haggler = users.last.nickname %>
                     <% end %>
                      
-                       <h4><%= link_to "Rejoin the haggle with  #{haggler}", chatroom_path(id: chat.id)    %> </h4>
-                          <%#  chat.id %> <%# chat.user_ids %>  
-                            <%# haggler  %> 
-                      <br>
+                       <h4><%= link_to "Rejoin the haggle with  #{haggler}", chatroom_path(id: chat.id)    %>   </h4>
+                        <%   if chat.messages.exists? %>
+                          <% if chat.messages.last.user != current_user %>  
+                            <!-- the line below is a cludgy hack for now to adjust for local time) -->
+                            <% adjusted_datetime = (chat.messages.last.created_at + 11.hours) %>
+                            <small> Last Message not yours: <%= adjusted_datetime.strftime("%a %b %e at %l:%M%p") %></small>
+                          <% end  %>
+                        <% end %>
                    <%  end %> 
                   <% end %>
           <!--/div -->

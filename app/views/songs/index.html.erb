@@ -23,20 +23,7 @@
         <thead>
           <tr>
 
-<<<<<<< HEAD
-    <% if song.audio.key.nil? == false  %>
-      <%= cl_video_tag song.audio.key, controls: true, style: "width: 100%; height:35px; " %>
-     <%=   cl_image_tag(song.audio.key, :height=>200, :width=>500, :flags=>"waveform", :color=>"black", :background=>"white", :resource_type=>"video") %>
-    <% end %>
- 
-    <%= link_to "Edit", edit_song_path(song) %> |
-    <%= link_to "Delete", song_path(song), method: :delete, data: {confirm: "Are you sure?"} %>
-    <%= button_to "Add #{song.name} to cart", line_items_path(:song_id => song.id) %>
- 
-
-=======
             <th scope="col"></th>
->>>>>>> master
 
             <th scope="col">Name</th>
 

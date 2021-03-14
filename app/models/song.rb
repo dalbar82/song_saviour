@@ -3,7 +3,7 @@ class Song < ApplicationRecord
   belongs_to :genre
   has_many :orders
   has_many :line_items, dependent: :destroy
-  has_many :bookings 
+  has_many :bookings
 
   has_one_attached :audio
   has_rich_text :lyrics
@@ -19,11 +19,11 @@ class Song < ApplicationRecord
   # }
   @song = Song.new
   include PgSearch::Model
-    pg_search_scope :global_search,
-    against: [ :name, :state ],
+   pg_search_scope :global_search,
+    against: [:name, :state],
     associated_against: {
-      user: [ :first_name, :last_name ],
-      genre: [ :genre]
+      user: [:first_name, :last_name],
+      genre: [:genre]
     },
     using: {
       tsearch: { prefix: true }
@@ -37,6 +37,5 @@ class Song < ApplicationRecord
   #   using: {
   #     tsearch: { prefix: true }
   #   }
-
 
 end

@@ -6,8 +6,23 @@
 
 
 <h2> Potential buyer is <%= my_first_user.nickname %> </h1>
-<h2>Potential Seller (artist) is <%= my_sec_user.nickname %> </h2>
+<h2>Potential Seller (artist) is <%= my_sec_user.nickname %> </h2> 
+<p> Songs currently available: </p>
+<ul>
+<% my_sec_user.songs.each do |song| %>
+  <li>
+    <% if song.state == "available" %>
+      <%= song.name %>
+      <% if song.dollar == true  %>
+        <p>  Buyout Price $<%=song.price  %> 
+      <%  else  %>
+        Royalty <%=  song.price  %> %  </p>    
+      <% end %>
+  </li>
+  <% end %> 
 
+<% end %>
+</ul>
 
 
 <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
@@ -28,10 +43,10 @@
 </div>
 
 <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-  <%= f.input :content, label: false, placeholder: "Message -#{@chatroom.name}" %>
+  <%= f.input :content, label: false, placeholder: "Your message to get that deal! " %>
 
 <% end %>
- <h1><%= link_to "remove this chat", chatroom_path(@chatroom), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></h1>
+ <h1><%= link_to "Stop haggling!", chatroom_path(@chatroom), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure? All haggle messages will be lost?" } %></h1>
 
-<!-- trying to remove a chat violates a foreign key restraint, could hide them , not sure if we need to for our purposes -->
+
  

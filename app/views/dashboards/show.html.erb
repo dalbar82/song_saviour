@@ -5,9 +5,13 @@
       <a class="nav-link" id="v-pills-favourite-tab" data-toggle="pill" href="#v-pills-favourite" role="tab" aria-controls="v-pills-favourite" aria-selected="true">My Favourites</a>
       <a class="nav-link" id="v-pills-uploaded-tab" data-toggle="pill" href="#v-pills-uploaded" role="tab" aria-controls="v-pills-uploaded" aria-selected="true">Uploaded Songs</a>
       <a class="nav-link active" id="v-pills-sold-tab" data-toggle="pill" href="#v-pills-sold" role="tab" aria-controls="v-pills-sold" aria-selected="true">Sold Songs</a>
+      
       <a class="nav-link" id="v-pills-purchased-tab" data-toggle="pill" href="#v-pills-purchased" role="tab" aria-controls="v-pills-purchased" aria-selected="true">Purchased Songs</a>
+     <a class="nav-link" id="v-pills-haggle-tab" data-toggle="pill" href="#v-pills-haggle" role="tab" aria-controls="v-pills-haggle" aria-selected="true">Haggle Rooms</a>
+
       <a class="nav-link" id="v-pills-pending-tab" data-toggle="pill" href="#v-pills-pending" role="tab" aria-controls="v-pills-pending" aria-selected="true">Pending Sale Approval</a>
       <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="true">Account Settings</a>
+   
     </div>
   </div>
 
@@ -60,6 +64,37 @@
           <div class="row ">
 
           </div>
+
+        </div>
+      </div>
+
+       <div class="tab-pane fade " id="v-pills-haggle" role="tabpanel" aria-labelledby="v-pills-haggle-tab">
+        <div class="container">
+
+          <!-- div class="row "-->
+                  <h2>Ongoing Haggles</h2>
+
+                  <% Chatroom.all.reverse.each  do |chat|  %>
+                    <% if chat.hidden == false %>
+                      <% if chat.user_ids.include? current_user.id %>
+                        <% users = User.find(chat.user_ids)  %>
+                          <% if users.first != current_user  %>
+                            <% haggler = users.first.nickname %> 
+                          <% else %>
+                            <% haggler = users.last.nickname %>
+                      <% end %>
+                    <% end %> 
+                       <h4><%= link_to "Rejoin the haggle with  #{haggler}", chatroom_path(id: chat.id)    %>   </h4>
+                        <%   if chat.messages.exists? %>
+                          <% if chat.messages.last.user != current_user %>  
+                            <!-- the line below is a cludgy hack for now to adjust for local time) -->
+                            <% adjusted_datetime = (chat.messages.last.created_at + 11.hours) %>
+                            <small> Last Message not yours: <%= adjusted_datetime.strftime("%a %b %e at %l:%M%p") %></small>
+                          <% end  %>
+                        <% end %>
+                   <%  end %> 
+                  <% end %>
+          <!--/div -->
 
         </div>
       </div>

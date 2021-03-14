@@ -28,6 +28,8 @@
 
   <p> Lyrics: <%= @song.lyrics %></p>
 
+
+<p> <%= @song.lyrics %></p>
   <p> Uploader: <%= @song.user.first_name %> <%= @song.user.last_name %>  </p>
   <p> Known as: <%= @song.user.nickname %></p>
   <p> Artist-desc:  <%= @song.user.description %></p>
@@ -36,5 +38,8 @@
 
   <%= link_to "edit", edit_song_path(@song) %>
   <%# link_to edit_song_path(:song_id => song.id) %>
-
+  
+  <% if @song.user != current_user %>
+    <%= link_to "start new chat", chatrooms_path(chatroom: {user_id: @song.user_id}), method: :post %>  
+  <% end %>  
 </div>

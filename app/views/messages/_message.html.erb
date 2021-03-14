@@ -1,0 +1,10 @@
+<div class="message-container" id="message-<%= message.id %>">
+  <i class="author">
+    <span><%= message.user.nickname %></span>
+    <!-- the line below is a cludgy hack for now to adjust for local time) -->
+    <% adjusted_datetime = (message.created_at + 11.hours) %>
+    <small><%= adjusted_datetime.strftime("%a %b %e at %l:%M%p") %></small>
+    
+  </i>
+  <p><%=  message.content %></p>
+</div>

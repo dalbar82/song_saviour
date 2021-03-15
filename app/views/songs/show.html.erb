@@ -29,50 +29,63 @@
     <% if current_user.id == @song.user_id %>
       <%= link_to "edit", edit_song_path(@song), class: "btn btn-warning" %>
     <% end %>
-    
+
     <% if @song.user != current_user %>
-      <%= link_to "Start Haggling", chatrooms_path(chatroom: {user_id: @song.user_id}),  class: "btn btn-success", method: :post %> 
-       <h1><%# link_to "Stop haggling!", chatroom_path(@chatroom), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure? All haggle messages will be lost?" } %></h1> 
-    <% end %>  
+      <%= link_to "Start Haggling", chatrooms_path(chatroom: {user_id: @song.user_id}),  class: "btn btn-success", method: :post %>
+       <h1><%# link_to "Stop haggling!", chatroom_path(@chatroom), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure? All haggle messages will be lost?" } %></h1>
+    <% end %>
   </div>
 
   <div class="col-6 artist_title">
     <span class = "title">
-      <h4 style ="margin: 20px 0px;"> By: <%= @song.user.nickname %> </h4> 
-      
+      <h4 style ="margin: 20px 0px;"> By: <%= @song.user.nickname %> </h4>
+
       <% case @song.user.cred %>
       <% when 0..10 %>
-        <%= cl_image_tag "dqsjezd716s3vqpysp1u", width: 50, height: 50, crop: :fill    %>  <!--min cred --> 
+        <%= cl_image_tag "dqsjezd716s3vqpysp1u", width: 50, height: 50, crop: :fill    %>  <!--min cred -->
       <% when 10..100 %>
          <%=  cl_image_tag "bi7cunh0wb8e37eonpuh", width: 50, height: 50, crop: :fill    %>  <!--2nd lvl cred  -->
       <% when 100..500 %>
-        <%=  cl_image_tag "nwrmwv4pe75urersjexk", width: 50, height: 50, crop: :fill    %>  <!--3rd lvl cred  -->  
-      <% when 500..1000 %>   
+        <%=  cl_image_tag "nwrmwv4pe75urersjexk", width: 50, height: 50, crop: :fill    %>  <!--3rd lvl cred  -->
+      <% when 500..1000 %>
          <%=  cl_image_tag "lxglqrvux6hmfuigbwns", width: 50, height: 50, crop: :fill    %>  <!--4th lvl cred  -->
       <% when 1000..100000 %>
           <%=  cl_image_tag "ugwqufxkpjkg1gsbfc5g", width: 50, height: 50, crop: :fill    %>  <!--5th lvl cred  -->
 
       <% end %>
-     
-     
-    </span> 
+
+
+    </span>
 
     <div class="artist_box" >
 
-        <div >     
-           
+        <div >
+
           <% if @song.user.photo.key.nil? == false %>
               <p>  <%=  cl_image_tag @song.user.photo.key, margin: 0 -16, background: "black", height: 200, width: 200, radius: 8, crop: :fill  %> </p>
-              
+
             <% end %>
-         
-        </div> 
-       
+
+        </div>
+
         <div class ="user_desc">
           <%=   @song.user.description  %>
-        </div> 
-      
+        </div>
+
       </div>
+
+  <%= link_to "edit", edit_song_path(@song) %>
+  <%# link_to edit_song_path(:song_id => song.id) %>
+
+  <% if @song.user != current_user %>
+    <%= link_to "start new chat", chatrooms_path(chatroom: {user_id: @song.user_id}), method: :post %>
+  <% end %>
+</div>
+
+
+
+
+
 
     <div class="songs" style = "text-align:center">
       <p> Songs currently available: </p>
@@ -80,23 +93,24 @@
       <% @song.user.songs.each do |song| %>
       <li>
       <% if song.state == "available" %>
-        <%= song.name %>    
+        <%= song.name %>
           <% if song.dollar == true  %>
-            <p>  Buyout Price $<%=song.price  %> 
+            <p>  Buyout Price $<%=song.price  %>
           <%  else  %>
-            Royalty <%  song.price  %> %  </p>    
+            Royalty <%  song.price  %> %  </p>
         <% end %>
       <% end %>
       </li>
-     <% end %> 
+     <% end %>
     </div>
   </div>
-  
+
   </div>
- 
+
   <%#  cl_image_tag "dqsjezd716s3vqpysp1u", width: 100, height: 100, crop: :fill    %>  <!--min cred -->
   <%#  cl_image_tag "bi7cunh0wb8e37eonpuh", width: 100, height: 100, crop: :fill    %>  <!--2nd lvl cred  -->
   <%#  cl_image_tag "nwrmwv4pe75urersjexk", width: 100, height: 100, crop: :fill    %>  <!--3rd lvl cred  -->
   <%#  cl_image_tag "lxglqrvux6hmfuigbwns", width: 100, height: 100, crop: :fill    %>  <!--4th lvl cred  -->
   <%#  cl_image_tag "ugwqufxkpjkg1gsbfc5g", width: 100, height: 100, crop: :fill    %>  <!--5th lvl cred  -->
 </div>
+

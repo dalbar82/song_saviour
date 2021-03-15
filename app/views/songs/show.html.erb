@@ -38,8 +38,13 @@
 
   <%= link_to "edit", edit_song_path(@song) %>
   <%# link_to edit_song_path(:song_id => song.id) %>
-  
+
   <% if @song.user != current_user %>
-    <%= link_to "start new chat", chatrooms_path(chatroom: {user_id: @song.user_id}), method: :post %>  
-  <% end %>  
+    <%= link_to "start new chat", chatrooms_path(chatroom: {user_id: @song.user_id}), method: :post %>
+  <% end %>
 </div>
+
+
+
+
+

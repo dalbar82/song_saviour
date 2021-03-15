@@ -1,3 +1,4 @@
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -13,8 +14,8 @@ class User < ApplicationRecord
   has_many :chatroom_users
   has_many :messages, through: :chatroom_users
   has_many :chatrooms, through: :chatroom_users
-  
 
   has_rich_text :description
 
+  acts_as_favoritor
 end

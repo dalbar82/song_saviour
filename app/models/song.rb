@@ -1,3 +1,4 @@
+
 class Song < ApplicationRecord
   belongs_to :user
   belongs_to :genre
@@ -29,13 +30,7 @@ class Song < ApplicationRecord
       tsearch: { prefix: true }
     }
 
-      # pg_search_scope :global_search,
-  #   against: [ :name, :state ],
-  #   associated_against: {
-  #     user: [ :first_name, :last_name ]
-  #   },
-  #   using: {
-  #     tsearch: { prefix: true }
-  #   }
+acts_as_favoritable
 
 end
+

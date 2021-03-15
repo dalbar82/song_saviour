@@ -1,142 +1,229 @@
 <div class="row">
 
-  <div class="col-3">
-    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link" id="v-pills-favourite-tab" data-toggle="pill" href="#v-pills-favourite" role="tab" aria-controls="v-pills-favourite" aria-selected="true">My Favourites</a>
-      <a class="nav-link" id="v-pills-uploaded-tab" data-toggle="pill" href="#v-pills-uploaded" role="tab" aria-controls="v-pills-uploaded" aria-selected="true">Uploaded Songs</a>
-      <a class="nav-link active" id="v-pills-sold-tab" data-toggle="pill" href="#v-pills-sold" role="tab" aria-controls="v-pills-sold" aria-selected="true">Sold Songs</a>
-      
-      <a class="nav-link" id="v-pills-purchased-tab" data-toggle="pill" href="#v-pills-purchased" role="tab" aria-controls="v-pills-purchased" aria-selected="true">Purchased Songs</a>
-     <a class="nav-link" id="v-pills-haggle-tab" data-toggle="pill" href="#v-pills-haggle" role="tab" aria-controls="v-pills-haggle" aria-selected="true">Haggle Rooms</a>
 
-      <a class="nav-link" id="v-pills-pending-tab" data-toggle="pill" href="#v-pills-pending" role="tab" aria-controls="v-pills-pending" aria-selected="true">Pending Sale Approval</a>
-      <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="true">Account Settings</a>
-   
+    <div class="col-3">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+        <a class="nav-link" id="v-pills-favourite-tab" data-toggle="pill" href="#v-pills-favourite" role="tab" aria-controls="v-pills-favourite" aria-selected="true">My Favourites</a>
+        <a class="nav-link" id="v-pills-uploaded-tab" data-toggle="pill" href="#v-pills-uploaded" role="tab" aria-controls="v-pills-uploaded" aria-selected="true">Uploaded Songs</a>
+        <a class="nav-link active" id="v-pills-sold-tab" data-toggle="pill" href="#v-pills-sold" role="tab" aria-controls="v-pills-sold" aria-selected="true">Sold Songs</a>
+
+        <a class="nav-link" id="v-pills-purchased-tab" data-toggle="pill" href="#v-pills-purchased" role="tab" aria-controls="v-pills-purchased" aria-selected="true">Purchased Songs</a>
+        <a class="nav-link" id="v-pills-haggle-tab" data-toggle="pill" href="#v-pills-haggle" role="tab" aria-controls="v-pills-haggle" aria-selected="true">Haggle Rooms</a>
+
+        <a class="nav-link" id="v-pills-pending-tab" data-toggle="pill" href="#v-pills-pending" role="tab" aria-controls="v-pills-pending" aria-selected="true">Pending Sale Approval</a>
+        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="true">Account Settings</a>
+
+      </div>
     </div>
-  </div>
 
-  <div class="col-9">
-    <div class="tab-content" id="v-pills-tabContent">
+    <div class="col-9">
+      <div class="tab-content" id="v-pills-tabContent">
 
 
-      <div class="tab-pane fade " id="v-pills-uploaded" role="tabpanel" aria-labelledby="v-pills-uploaded-tab">
-        <div class="container">
+              <div class="tab-pane fade " id="v-pills-favourite" role="tabpanel" aria-labelledby="v-pills-favourite-tab">
+                <div class="container">
+                  <div class="row ">
 
-          <div class="row ">
-            <% @songs.each do |song| %>
-              <div class="card col-4 p-2 m-4" style="width: 30px;">
-                <div class="card-body">
-                  <h5 class="card-title"><%= song.name %></h5>
-                  <p class="card-text"><%= song.price %></p>
-                  <h1><%= link_to "remove this listing", song_path(song), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></h1>
+                    <table class="table table-dark table-striped">
+                    <thead>
+                      <tr>
 
+                        <th scope="col"></th>
+
+                        <th scope="col">Name</th>
+
+                        <th scope="col">Uploader</th>
+
+                        <th scope="col">Genres</th>
+
+                        <th scope="col">Price</th>
+
+                        <th scope="col"></th>
+
+                      </tr>
+                    </thead>
+
+                    <tbody>
+
+
+                      <% current_user.favorites.each do |favorite| %>
+
+                      <tr class=indextableRow>
+
+                        <!-- <th scope="row">1</th> -->
+                           <td>
+
+                            <% if Song.find(favorite.favoritable_id).user.photo.key.nil? == false %>
+                              <%= cl_image_tag Song.find(favorite.favoritable_id).user.photo.key, class: "songListImage"%>
+                            <% else %>
+                              <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615276848/SSlogoDarkTrans_v7auwe.svg", class: "songListImage" %>
+                            <% end %>
+                          <%#cl_image_tag(song.user.photo.key) if song.user.photo.attached? %>
+                          </td>
+
+
+                          <!-- <th scope="row"></th> -->
+                          <td>
+                            <p> <%= Song.find(favorite.favoritable_id).name  %>  </p>
+                          </td>
+
+                          <!-- <th scope="row"></th> -->
+                          <td>
+                            <p><%= Song.find(favorite.favoritable_id).user.nickname%></p>
+                          </td>
+
+
+                          <!-- <th scope="row"></th> -->
+                          <td>
+                           <p> <%= Song.find(favorite.favoritable_id).genre.genre %></p>
+                          </td>
+
+                        <!-- <th scope="row"></th> -->
+                          <td>
+                          <% if Song.find(favorite.favoritable_id).dollar == true  %>
+                            <p>$<%=Song.find(favorite.favoritable_id).price%>
+                          <%  else  %>
+                            <p><%=Song.find(favorite.favoritable_id).price%>%</p>
+                          <% end %>
+                        </td>
+
+                        <!-- <th scope="row"></th> -->
+                          <td>
+                           <% if Song.find(favorite.favoritable_id).audio.key.nil? == false  %>
+                            <%= render "songs/video_control", song: Song.find(favorite.favoritable_id) %>
+                          <% else %>
+                            <p>no audio</p>
+                          <% end %>
+                        </td>
+
+
+                        <!-- End links on row -->
+                          <td>
+
+
+
+
+
+                        <% if Song.find(favorite.favoritable_id).dollar == false %>
+                        <%= link_to "?",  new_song_booking_path(Song.find(favorite.favoritable_id)), id: "enquire" %>
+                        <% end %>
+
+                        <% if Song.find(favorite.favoritable_id).dollar == true %>
+                        <%= link_to line_items_path(:song_id => Song.find(favorite.favoritable_id).id), method: :post do %>
+                          <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615423829/001-cart_cfrbrc.svg", width: 25, height: 25, alt: 'a face that is unnervingly happy'%>
+                        <% end %>
+                        <% end  %>
+                        <%= link_to "view", song_path(Song.find(favorite.favoritable_id).id), class: "viewSonglink" %>
+
+
+                          <%= link_to "un-fav", song_favorite_path(Song.find(favorite.favoritable_id), favorite), method: :delete, class: "favButton" %>
+                        </td>
+
+                        </tr>
+
+                        <% end %>
+
+
+                      </tbody>
+                    </table>
+
+
+                  </div>
                 </div>
               </div>
-            <% end %>
-          </div>
 
-        </div>
-      </div>
+              <div class="tab-pane fade " id="v-pills-uploaded" role="tabpanel" aria-labelledby="v-pills-uploaded-tab">
+                <div class="container">
+                  <div class="row ">
+                    <% @songs.each do |song| %>
+                      <div class="card col-4 p-2 m-4" style="width: 30px;">
+                        <div class="card-body">
+                          <h5 class="card-title"><%= song.name %></h5>
+                          <p class="card-text"><%= song.price %></p>
+                          <h1><%= link_to "remove this listing", song_path(song), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></h1>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
 
-      <div class="tab-pane fade " id="v-pills-favourite" role="tabpanel" aria-labelledby="v-pills-favourite-tab">
-        <div class="container">
+              <div class="tab-pane fade " id="v-pills-sold" role="tabpanel" aria-labelledby="v-pills-sold-tab">
+                <div class="container">
+                  <div class="row ">
+                  </div>
+                </div>
+              </div>
 
-          <div class="row ">
 
-          </div>
+              <div class="tab-pane fade " id="v-pills-purchased" role="tabpanel" aria-labelledby="v-pills-purchased-tab">
+                <div class="container">
+                  <div class="row ">
+                  </div>
+                </div>
+              </div>
 
-        </div>
-      </div>
 
-      <div class="tab-pane fade " id="v-pills-sold" role="tabpanel" aria-labelledby="v-pills-sold-tab">
-        <div class="container">
-
-          <div class="row ">
-
-          </div>
-
-        </div>
-      </div>
-
-      <div class="tab-pane fade " id="v-pills-purchased" role="tabpanel" aria-labelledby="v-pills-purchased-tab">
-        <div class="container">
-
-          <div class="row ">
-
-          </div>
-
-        </div>
-      </div>
-
-       <div class="tab-pane fade " id="v-pills-haggle" role="tabpanel" aria-labelledby="v-pills-haggle-tab">
-        <div class="container">
-
-          <!-- div class="row "-->
-                  <h2>Ongoing Haggles</h2>
-
-                  <% Chatroom.all.reverse.each  do |chat|  %>
-                    <% if chat.hidden == false %>
-                      <% if chat.user_ids.include? current_user.id %>
-                        <% users = User.find(chat.user_ids)  %>
+              <div class="tab-pane fade " id="v-pills-haggle" role="tabpanel" aria-labelledby="v-pills-haggle-tab">
+                <div class="container">
+                   <h2>Ongoing Haggles</h2>
+                    <% Chatroom.all.reverse.each  do |chat|  %>
+                      <% if chat.hidden == false %>
+                        <% if chat.user_ids.include? current_user.id %>
+                          <% users = User.find(chat.user_ids)  %>
                           <% if users.first != current_user  %>
-                            <% haggler = users.first.nickname %> 
+                            <% haggler = users.first.nickname %>
                           <% else %>
                             <% haggler = users.last.nickname %>
-                      <% end %>
-                    <% end %> 
-                       <h4><%= link_to "Rejoin the haggle with  #{haggler}", chatroom_path(id: chat.id)    %>   </h4>
-                        <%   if chat.messages.exists? %>
-                          <% if chat.messages.last.user != current_user %>  
-                            <!-- the line below is a cludgy hack for now to adjust for local time) -->
+                          <% end %>
+                        <% end %>
+                        <h4><%= link_to "Rejoin the haggle with  #{haggler}", chatroom_path(id: chat.id)    %>   </h4>
+                        <% if chat.messages.exists? %>
+                          <% if chat.messages.last.user != current_user %>
+                              <!-- the line below is a cludgy hack for now to adjust for local time) -->
                             <% adjusted_datetime = (chat.messages.last.created_at + 11.hours) %>
                             <small> Last Message not yours: <%= adjusted_datetime.strftime("%a %b %e at %l:%M%p") %></small>
                           <% end  %>
                         <% end %>
-                   <%  end %> 
-                  <% end %>
-          <!--/div -->
+                      <% end %>
+                    <% end %>
+                </div>
+              </div>
+
+              <div class="tab-pane fade " id="v-pills-pending" role="tabpanel" aria-labelledby="v-pills-pending-tab">
+                <div class="container">
+                  <div class="row ">
+                    <% @bookings.each do |book| %>
+                      <div class="card col-4 p-2 m-4" style="width: 30px;">
+                        <% if book.song.user.photo.key.nil? == false %>
+                          <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                        <% else %>
+                          <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615276848/SSlogoDarkTrans_v7auwe.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                        <% end %>
+                        <div class="card-body">
+                          <h5 class="card-title"><%= book.song.name %></h5>
+                          <p class="card-text"><%= book.status %></p>
+                          <h1><%= link_to "cancel enquiry", bookings_new_path(book), method: :delete, data: { confirm: "Are you sure?" } %></h1>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+
+                  <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                    <div class="container">
+                      <div class="row">
+                        <h2>Edit account</h2>
+                        <%= render "devise/registrations/form", resource: current_user%>
+                      </div>
+                    </div>
+                  </div>
 
         </div>
-      </div>
-
-        <div class="tab-pane fade " id="v-pills-pending" role="tabpanel" aria-labelledby="v-pills-pending-tab">
-        <div class="container">
-
-          <div class="row ">
-             <% @bookings.each do |book| %>
-      <div class="card col-4 p-2 m-4" style="width: 30px;">
-              <% if book.song.user.photo.key.nil? == false %>
-          <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-
-        <% else %>
-          <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615276848/SSlogoDarkTrans_v7auwe.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-         <% end %>
-        <div class="card-body">
-          <h5 class="card-title"><%= book.song.name %></h5>
-          <p class="card-text"><%= book.status %></p>
-          <h1><%= link_to "cancel enquiry", bookings_new_path(book), method: :delete, data: { confirm: "Are you sure?" } %></h1>
-        </div>
-      </div>
-    <% end %>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="tab-pane fade " id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-        <div class="container">
-
-          <h2>Edit account</h2>
-
-              <%= render "devise/registrations/form", resource: current_user%>
-
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-
+     </div>
 </div>
 
 

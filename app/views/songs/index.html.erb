@@ -110,6 +110,8 @@
             <% end  %>
             <%= link_to "view", song_path(song.id), class: "viewSonglink" %>
 
+              <%= link_to "fav", song_favorites_path(song), method: :post, class: "favButton" %>
+
             </td>
 
             </tr>

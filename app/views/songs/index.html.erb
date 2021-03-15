@@ -54,6 +54,22 @@
                   <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615276848/SSlogoDarkTrans_v7auwe.svg", class: "songListImage" %>
                 <% end %>
               <%#cl_image_tag(song.user.photo.key) if song.user.photo.attached? %>
+              
+              <% case song.user.cred %>
+                <% when 0..10 %>
+                  <%= cl_image_tag "dqsjezd716s3vqpysp1u", width: 50, height: 50, crop: :fill    %>  <!--min cred --> 
+                <% when 10..100 %>
+                  <%=  cl_image_tag "bi7cunh0wb8e37eonpuh", width: 50, height: 50, crop: :fill    %>  <!--2nd lvl cred  -->
+                <% when 100..500 %>
+                  <%=  cl_image_tag "nwrmwv4pe75urersjexk", width: 50, height: 50, crop: :fill    %>  <!--3rd lvl cred  -->  
+                <% when 500..1000 %>   
+                  <%=  cl_image_tag "lxglqrvux6hmfuigbwns", width: 50, height: 50, crop: :fill    %>  <!--4th lvl cred  -->
+                <% when 1000..100000 %>
+                    <%=  cl_image_tag "ugwqufxkpjkg1gsbfc5g", width: 50, height: 50, crop: :fill    %>  <!--5th lvl cred  -->
+
+      <% end %>
+     
+
               </td>
 
 

@@ -37,16 +37,19 @@
   </div>
 
   <div class="col-6 artist_title">
-    <h4 style = "text-align:center" > By: <%= @song.user.nickname %> </h4> 
-    
-      <div class="artist_box" >
+    <span class = "title">
+      <h4 style ="margin: 20px 0px;"> By: <%= @song.user.nickname %> </h4> 
+      <%=  cl_image_tag "lxglqrvux6hmfuigbwns", width: 50, height: 50, crop: :fill    %>  <!--4th lvl cred  -->
+    </span> 
+
+    <div class="artist_box" >
 
         <div >     
            
           <% if current_user.photo.key.nil? == false %>
               <p>  <%=  cl_image_tag @song.user.photo.key, margin: 0 -16, background: "black", height: 200, width: 200, radius: 8, crop: :fill  %> </p>
             <% end %>
-           <%=  cl_image_tag "yr2zm33cbyrdxidbz6bg", width: 100, height: 100, crop: :fill    %>  <!--max cred -->
+           <%#  cl_image_tag "yr2zm33cbyrdxidbz6bg", width: 100, height: 100, crop: :fill    %>  <!--max cred -->
         </div> 
 
         <div class ="user_desc">
@@ -75,5 +78,9 @@
   
   </div>
  
- 
+  <%=  cl_image_tag "dqsjezd716s3vqpysp1u", width: 100, height: 100, crop: :fill    %>  <!--min cred -->
+  <%=  cl_image_tag "bi7cunh0wb8e37eonpuh", width: 100, height: 100, crop: :fill    %>  <!--2nd lvl cred  -->
+  <%=  cl_image_tag "nwrmwv4pe75urersjexk", width: 100, height: 100, crop: :fill    %>  <!--3rd lvl cred  -->
+  <%=  cl_image_tag "lxglqrvux6hmfuigbwns", width: 100, height: 100, crop: :fill    %>  <!--4th lvl cred  -->
+  <%=  cl_image_tag "ugwqufxkpjkg1gsbfc5g", width: 100, height: 100, crop: :fill    %>  <!--5th lvl cred  -->
 </div>

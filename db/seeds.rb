@@ -12,7 +12,7 @@ User.create!(email: "user3@user.com", password: "password", first_name: "Angus",
 User.create!(email: "user4@user.com", password: "password", first_name: "Akash", last_name: "Chhetri" , nickname: "DJ Traxx", cred:20)
 User.create!(email: "user5@user.com", password: "password", first_name: "Thembisile", last_name: "Baleni", nickname: "Thembi boi", cred: 500 )
 User.create!(email: "user6@user.com", password: "password", first_name: "Meredith", last_name: "MacAulay", nickname: "Hot Sauce", cred: 1000 )
-User.create!(email: "user7@user.com", password: "password", first_name: "Damion", last_name: "Lonel", nickname: "The One", cred: 1000 )
+User.create!(email: "user7@user.com", password: "password", first_name: "Damion", last_name: "Lonel", nickname: "The One", cred: 10000 )
 
 Genre.create!(genre: "Rock")
 Genre.create!(genre: "Jazz")

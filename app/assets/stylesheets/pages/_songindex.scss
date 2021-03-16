@@ -31,12 +31,12 @@
  }
 
 #enquire{
-      font-size: x-large;
-    color: #1e80f5;
+    font-size: small;
+    color: #777777;
     text-decoration: none;
     background-color: transparent;
-    font-weight: 900;
-    padding: 0 5px;
+    font-weight: 400;
+    border-bottom: 1px solid;
 }
 
 .table-dark thead th {
@@ -91,7 +91,7 @@
 }
 
 #searchBar {
-        position: relative;
+    position: relative;
     top: 12px;
     height: 30px;
     color: white;
@@ -107,6 +107,22 @@
       background-color: #4e4e4e;
     }
 
+.rate-flames{
+  width: 20px;
+  height: 20px;
 
+}
 
+tr.indextableRow {
+  transition: all 0.3s;
+}
+tr.indextableRow:hover {
+  background: #ccc!important; /* overrides odd and even styles */
+  transform: scale(1.01);
+  box-shadow: rgba(255,255,255,0.4) 0 0 2px;
+  color: black;
+}
 
+.tableLink{
+  text-align: center;
+}

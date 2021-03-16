@@ -5,7 +5,7 @@
     <h1><%= @song.name %></h1>
 
     <p><% if @song.audio.key.nil? == false  %>
-      <%= cl_video_tag @song.audio.key, controls: true, style: "width: 25%; height:35px; " %>
+      <%= cl_video_tag @song.audio.key, controls: true, style: "width: 25%; height:35px; ", id: "showaudio"%>
       <% end %>
     </p>
 

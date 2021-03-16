@@ -6,37 +6,7 @@
     <%  my_first_user = User.find(my_first_chatroom_user[:user_id])  %>
     <%  my_sec_user = User.find(my_sec_chatroom_user[:user_id])  %>
 
-    <div class="chat_top_section">
-      <% if current_user == my_first_user %>
-        <h2>  I am trying to buy </h2>
-      <% else %> 
-        <h2> I am trying to sell </h2> 
-      <% end %>
 
-      <div class="chat_songs_available">
-        <p> Songs currently available: </p>
-        <ul>
-        <% my_sec_user.songs.each do |song| %>
-          <li>
-            <% if song.state == "available" %>
-              <%= song.name %>
-              <% if song.dollar == true  %>
-                <p>  Buyout Price $<%=song.price  %> 
-              <%  else  %>
-                Royalty <%=  song.price  %> %  </p>    
-              <% end %>
-          </li>
-          <% end %> 
-
-        <% end %>
-        </ul>
-      </div>
-        <% if current_user == my_first_user %>
-          <h2>  from <%= my_sec_user.nickname %> </h2>
-        <% else %>
-          <h2>  to <%= my_first_user.nickname %> </h2>      
-        <% end %>
-    </div>
 
     
     
@@ -87,5 +57,37 @@
     <% end %>
     <h1><%= link_to "Stop haggling!", chatroom_path(@chatroom), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure? All haggle messages will be lost?" } %></h1>
   </div>
+
+      <div class="chat_bottom_section">
+      <% if current_user == my_first_user %>
+        <h2>  I am trying to buy </h2>
+      <% else %> 
+        <h2> I am trying to sell </h2> 
+      <% end %>
+
+      <div class="chat_songs_available">
+        <p> Songs currently available: </p>
+        <ul>
+        <% my_sec_user.songs.each do |song| %>
+          <li>
+            <% if song.state == "available" %>
+              <%= song.name %>
+              <% if song.dollar == true  %>
+                <p>  Buyout Price $<%=song.price  %> 
+              <%  else  %>
+                Royalty <%=  song.price  %> %  </p>    
+              <% end %>
+          </li>
+          <% end %> 
+
+        <% end %>
+        </ul>
+      </div>
+        <% if current_user == my_first_user %>
+          <h2>  from <%= my_sec_user.nickname %> </h2>
+        <% else %>
+          <h2>  to <%= my_first_user.nickname %> </h2>      
+        <% end %>
+    </div>
 </div>
   

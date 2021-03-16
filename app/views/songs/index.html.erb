@@ -54,21 +54,21 @@
                   <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615276848/SSlogoDarkTrans_v7auwe.svg", class: "songListImage" %>
                 <% end %>
               <%#cl_image_tag(song.user.photo.key) if song.user.photo.attached? %>
-              
+
               <% case song.user.cred %>
                 <% when 0..10 %>
-                  <%= cl_image_tag "dqsjezd716s3vqpysp1u", width: 50, height: 50, crop: :fill    %>  <!--min cred --> 
+                  <%= cl_image_tag "dqsjezd716s3vqpysp1u", class: "rate-flames" %>  <!--min cred -->
                 <% when 10..100 %>
-                  <%=  cl_image_tag "bi7cunh0wb8e37eonpuh", width: 50, height: 50, crop: :fill    %>  <!--2nd lvl cred  -->
+                  <%=  cl_image_tag "bi7cunh0wb8e37eonpuh", class: "rate-flames" %>  <!--2nd lvl cred  -->
                 <% when 100..500 %>
-                  <%=  cl_image_tag "nwrmwv4pe75urersjexk", width: 50, height: 50, crop: :fill    %>  <!--3rd lvl cred  -->  
-                <% when 500..1000 %>   
-                  <%=  cl_image_tag "lxglqrvux6hmfuigbwns", width: 50, height: 50, crop: :fill    %>  <!--4th lvl cred  -->
+                  <%=  cl_image_tag "nwrmwv4pe75urersjexk", class: "rate-flames" %>  <!--3rd lvl cred  -->
+                <% when 500..1000 %>
+                  <%=  cl_image_tag "lxglqrvux6hmfuigbwns", class: "rate-flames" %>  <!--4th lvl cred  -->
                 <% when 1000..100000 %>
-                    <%=  cl_image_tag "ugwqufxkpjkg1gsbfc5g", width: 50, height: 50, crop: :fill    %>  <!--5th lvl cred  -->
+                    <%=  cl_image_tag "ugwqufxkpjkg1gsbfc5g", class: "rate-flames" %>  <!--5th lvl cred  -->
 
       <% end %>
-     
+
 
               </td>
 
@@ -99,8 +99,8 @@
             </td>
 
             <!-- <th scope="row"></th> -->
-              <td>
-               <% if song.audio.key.nil? == false  %>
+            <td>
+              <% if song.audio.key.nil? == false  %>
                 <%= render "songs/video_control", song: song %>
               <% else %>
                 <p>no audio</p>
@@ -108,25 +108,36 @@
             </td>
 
 
-            <!-- End links on row -->
-              <td>
+            <!-- End links on rows -->
 
 
 
+            <td class="tableLink">
+              <% if song.dollar == false %>
+                <%= link_to "enquire",  new_song_booking_path(song), id: "enquire" %>
+              <% end %>
+
+              <% if song.dollar == true %>
+                <%= link_to line_items_path(:song_id => song.id), method: :post do %>
+                <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615423829/001-cart_cfrbrc.svg", width: 25, height: 25, alt: 'a face that is unnervingly happy'%>
+                <% end %>
+              <% end  %>
+
+            </td>
 
 
-            <% if song.dollar == false %>
-            <%= link_to "?",  new_song_booking_path(song), id: "enquire" %>
+
+            <td class="tableLink">
+              <%= link_to "details", song_path(song.id), class: "viewSonglink" %>
+            </td>
+
+            <td class="tableLink">
+            <% if current_user.favorited?(song) %>
+              <% favorite = current_user.all_favorites.where(favoritable_id: song.id, favoritable_type: 'Song') %>
+              <%= link_to "un-fav", unfavorite_song_path(song), method: :delete, class: "favButton" %>
+            <% else %>
+              <%= link_to "fav", favorite_song_path(song), method: :post, class: "favButton" %>
             <% end %>
-
-            <% if song.dollar == true %>
-            <%= link_to line_items_path(:song_id => song.id), method: :post do %>
-              <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615423829/001-cart_cfrbrc.svg", width: 25, height: 25, alt: 'a face that is unnervingly happy'%>
-            <% end %>
-            <% end  %>
-            <%= link_to "view", song_path(song.id), class: "viewSonglink" %>
-
-              <%= link_to "fav", song_favorites_path(song), method: :post, class: "favButton" %>
 
             </td>
 

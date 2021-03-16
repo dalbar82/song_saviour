@@ -1,5 +1,5 @@
 .navbar{
-  font-family: 'Reem Kufi';
+  font-family: 'Montserrat';
 
 }
 
@@ -13,12 +13,35 @@
   flex-grow: 0;
 }
 
+.navHead {
+    font-size: 13px;
+    color: #b3b3b3;
+    // border-top: 1px solid;
+    border-bottom: 1px solid;
+    margin-left: 4px;
+    padding-bottom: 3px;
+}
+.navHead:hover {
+  color: #454d55;
+}
+
+.userHead{
+  font-size: 13px;
+    color: #b3b3b3;
+    border-top: 1px solid;
+    // border-bottom: 1px solid;
+    margin-left: 4px;
+    padding-bottom: 3px;
+
+}
+
 .navbar-brand {
-  margin-right: 50px;
+      display: inline-block;
 img {
-  width: 30px;
-  height: 30px;
-  vertical-align: baseline;
+     width: 25px;
+    height: 25px;
+    margin-left: 1px;
+
 }
 }
 
@@ -31,5 +54,8 @@ img {
 }
 
 .nav-item{
-  display: flex;
+
 }
+
+
+

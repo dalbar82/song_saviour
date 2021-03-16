@@ -1,52 +1,91 @@
+<div class="container">
+    <div class="chat_container">
 
-<% my_first_chatroom_user = ChatroomUser.find( @chatroom.chatroom_user_ids.first ) %>
-<% my_sec_chatroom_user = ChatroomUser.find( @chatroom.chatroom_user_ids.last ) %>
-<%  my_first_user = User.find(my_first_chatroom_user[:user_id])  %>
-<%  my_sec_user = User.find(my_sec_chatroom_user[:user_id])  %>
+    <% my_first_chatroom_user = ChatroomUser.find( @chatroom.chatroom_user_ids.first ) %>
+    <% my_sec_chatroom_user = ChatroomUser.find( @chatroom.chatroom_user_ids.last ) %>
+    <%  my_first_user = User.find(my_first_chatroom_user[:user_id])  %>
+    <%  my_sec_user = User.find(my_sec_chatroom_user[:user_id])  %>
 
-
-<h2> Potential buyer is <%= my_first_user.nickname %> </h1>
-<h2>Potential Seller (artist) is <%= my_sec_user.nickname %> </h2> 
-<p> Songs currently available: </p>
-<ul>
-<% my_sec_user.songs.each do |song| %>
-  <li>
-    <% if song.state == "available" %>
-      <%= song.name %>
-      <% if song.dollar == true  %>
-        <p>  Buyout Price $<%=song.price  %> 
-      <%  else  %>
-        Royalty <%=  song.price  %> %  </p>    
+    <div class="chat_top_section">
+      <% if current_user == my_first_user %>
+        <h2>  I am trying to buy </h2>
+      <% else %> 
+        <h2> I am trying to sell </h2> 
       <% end %>
-  </li>
-  <% end %> 
 
-<% end %>
-</ul>
+      <div class="chat_songs_available">
+        <p> Songs currently available: </p>
+        <ul>
+        <% my_sec_user.songs.each do |song| %>
+          <li>
+            <% if song.state == "available" %>
+              <%= song.name %>
+              <% if song.dollar == true  %>
+                <p>  Buyout Price $<%=song.price  %> 
+              <%  else  %>
+                Royalty <%=  song.price  %> %  </p>    
+              <% end %>
+          </li>
+          <% end %> 
 
-
-<div id="messages" data-chatroom-id="<%= @chatroom.id %>">
-  <%  if @chatroom.users.include? current_user %> 
-    <% @chatroom.messages.each do |message| %>
-      <div class="message-container" id="#message-<%= message.id %>">
-        <i class="author">
-          <span><%= message.chatroom_user.user.nickname %></span>
-          <!-- the line below is a cludgy hack for now to adjust for daylight saving) -->
-          <% adjusted_datetime = (message.created_at - 1.hours) %>
-          <small><%= adjusted_datetime.strftime("%a %b %e at %l:%M%p") %></small>
-        </i>
-        <p><%= message.content %></p>
-    
+        <% end %>
+        </ul>
       </div>
+        <% if current_user == my_first_user %>
+          <h2>  from <%= my_sec_user.nickname %> </h2>
+        <% else %>
+          <h2>  to <%= my_first_user.nickname %> </h2>      
+        <% end %>
+    </div>
+
+    
+    
+
+
+
+
+    <div id="messages col-12" data-chatroom-id="<%= @chatroom.id %>">
+      <%  if @chatroom.users.include? current_user %> 
+        <% @chatroom.messages.each do |message| %>
+          
+         <%  if message.user == current_user %>
+           <div class="chat_right_mess">
+              <div class="message-container " id="#message-<%= message.id %>">
+               
+                <i class="author">
+                  <span><%= message.chatroom_user.user.nickname %></span>
+                  <!-- the line below is a cludgy hack for now to adjust for daylight saving) -->
+                  <% adjusted_datetime = (message.created_at - 1.hours) %>
+                  <small><%= adjusted_datetime.strftime("%a %b %e at %l:%M%p") %></small>
+                </i>
+                <p><%= message.content %></p>        
+              </div>
+            </div>
+
+            <% else  %>
+              <div class="chat_left_mess ">
+              
+                <div class="message-container" id="#message-<%= message.id %>">
+                  <i class="author">
+                    <span><%= message.chatroom_user.user.nickname %></span>
+                    <!-- the line below is a cludgy hack for now to adjust for daylight saving) -->
+                    <% adjusted_datetime = (message.created_at - 1.hours) %>
+                    <small><%= adjusted_datetime.strftime("%a %b %e at %l:%M%p") %></small>
+                  </i>
+                  <p><%= message.content %></p>        
+                </div>
+              </div>
+
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
+      <%= f.input :content, label: false, placeholder: "Your message to get that deal! " %>
+
     <% end %>
-  <% end %>
+    <h1><%= link_to "Stop haggling!", chatroom_path(@chatroom), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure? All haggle messages will be lost?" } %></h1>
+  </div>
 </div>
-
-<%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-  <%= f.input :content, label: false, placeholder: "Your message to get that deal! " %>
-
-<% end %>
- <h1><%= link_to "Stop haggling!", chatroom_path(@chatroom), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure? All haggle messages will be lost?" } %></h1>
-
-
- 
+  

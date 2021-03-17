@@ -120,7 +120,7 @@
                         <%= link_to "view", song_path(Song.find(favorite.favoritable_id).id), class: "viewSonglink" %>
 
 
-                          <%= link_to "un-fav", song_favorite_path(Song.find(favorite.favoritable_id), favorite), method: :delete, class: "favButton" %>
+                          <%= link_to "un-fav", unfavorite_song_path(Song.find(favorite.favoritable_id)), method: :delete, class: "favButton" %>
                         </td>
 
                         </tr>

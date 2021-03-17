@@ -30,7 +30,11 @@ Rails.application.routes.draw do
 
   resources :songs do
     resources :bookings, only: [:index, :show, :new, :update, :edit, :create, :destroy]
-    resources :favorites, only: [:create, :destroy]
+
+    member do
+      post :favorite
+      delete :unfavorite
+    end
   end
 
   resources :orders do

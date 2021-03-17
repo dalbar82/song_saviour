@@ -1,6 +1,6 @@
 class SongsController < ApplicationController
 
-  before_action :set_song, only: %i[show edit update]
+  before_action :set_song, only: %i[show edit update favorite unfavorite]
 
   def index
 
@@ -21,6 +21,7 @@ class SongsController < ApplicationController
       render :new
     end
   end
+
 
   def new
     @song = Song.new
@@ -57,6 +58,15 @@ class SongsController < ApplicationController
 
   end
 
+  def favorite
+    current_user.favorite(@song)
+    redirect_back(fallback_location: songs_path)
+  end
+
+  def unfavorite
+    current_user.unfavorite(@song)
+    redirect_back(fallback_location: songs_path)
+  end
 
   private
 
@@ -69,3 +79,4 @@ class SongsController < ApplicationController
     params.require(:song).permit(:name, :rating, :pricing_type, :dollar, :price, :state, :audio, :lyrics, :genre_id )
   end
 end
+

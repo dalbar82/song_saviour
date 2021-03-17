@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :user
+  has_many :songs
   has_many :shopping_carts
   has_many :line_items
 

@@ -68,8 +68,6 @@ class SongsController < ApplicationController
     redirect_back(fallback_location: songs_path)
   end
 
-
-
   private
 
   def set_song

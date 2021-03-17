@@ -1,16 +1,32 @@
-<%= simple_form_for song do |f|  %>
-<div class="row songNameUpload">
-  <div class="col-8"> <%= f.input :name, label: "Name of song"   %></div>
-  <div class="col-4"> <%= f.input :audio, as: :file, label: "Upload Audio", class: "uploadButton" %> </div>
+
+<div class="container newContainer">
+    <h1 class="newSongH1">Add your song</h1>
+    <br>
+    <div class="row">
+      <div class="col-7">
+        <%= simple_form_for song do |f|  %>
+        <div class="songNameUpload">
+          <div class="col-8"> <%= f.input :name, label: "Name of song"   %></div>
+          <div class="col-4"> <%= f.input :audio, as: :file, label: "Upload Audio", class: "uploadButton" %> </div>
+        </div>
+
+        <div class="songNameUpload">
+          <div class="col-8"> <%= f.input :dollar,  as: :radio_buttons, label: "'Yes' to sell outright ($) or 'No' for royalty split (%)"  %> </div>
+          <div class="col-4"> <%= f.input :price, label: "Enter $ Value or Royalty %" %> </div>
+        </div>
+
+        <div class="songNameUpload">
+          <%= f.association :genre, label_method: :genre %>
+        </div>
+      </div>
+
+      <div class="col-5">
+        <div class="songNameUpload">
+          <%= f.input :lyrics, as: :rich_text_area, label: "Show us ya Lyrics", class: "lyrics_text" %>
+        </div>
+      </div>
+    </div>
+      <%= f.submit :class => "formButton" %>
+
+    <% end %>
 </div>
-
-<div class="row songNameUpload">
-  <div class="col-8"> <%= f.input :dollar,  as: :radio_buttons, label: "Sell Type: 'Yes' to sell outright ($) or 'No' for royalty split (%)"  %> </div>
-  <div class="col-4"> <%= f.input :price, label: "Enter $ Value or Royalty %" %> </div>
-</div>
-
-<%= f.association :genre, label_method: :genre %>
-<%= f.input :lyrics, as: :rich_text_area, label: "lyrics", class: "lyrics_text" %>
-<%= f.submit  %>
-
-<% end %>

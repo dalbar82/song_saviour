@@ -1,116 +1,243 @@
-<div class="container">
+<div class="showSongContainer">
   <div class="row">
-    <div class="col-6">
-    <br>
-    <h1><%= @song.name %></h1>
 
-    <p><% if @song.audio.key.nil? == false  %>
-      <%= cl_video_tag @song.audio.key, controls: true, style: "width: 25%; height:35px; ", id: "showaudio"%>
-      <% end %>
-    </p>
 
-   <% if @song.audio.key.nil? == false  %>
+    <div class="col-5 songShowCol">
 
-                <%= render "songs/video_control", song: @song %>
-              <% else %>
-                <p>no audio</p>
-              <% end %>
-  <p>
-      Cost:
-      <% if @song.dollar == true  %>
-      Available for outright purchase man! $<%=@song.price  %>
-      <%  else  %>
-      This ones on a royalty deal for <%=  @song.price  %> % of the sweet cash you make off it
-      <% end %>
-    </p>
+      <div class="showHeader">
+        <h1><%= @song.name %></h1>
+        <% if @song.audio.key.nil? == false  %>
+            <%= render "songs/video_control", song: @song %>
+        <% else %>
+            <p>no audio</p>
+        <% end %>
+      </div>
 
-    <p> Lyrics: <%= @song.lyrics %></p>
+      <p>
+        Cost:
+        <% if @song.dollar == true  %>
+          $<%=@song.price  %>
+        <%  else  %>
+          <%=  @song.price  %>% Royalty split
+        <% end %>
+      </p>
 
-    <% if current_user.id == @song.user_id %>
-      <%= link_to "edit", edit_song_path(@song), class: "btn btn-warning" %>
-    <% end %>
+      <div class="lyricsDiv">
+        <p>Lyrics:</p>
+        <br>
+        <p> <%= @song.lyrics %></p>
+      </div>
 
-    <% if @song.user != current_user %>
-      <%= link_to "Start Haggling", chatrooms_path(chatroom: {user_id: @song.user_id}),  class: "btn btn-success", method: :post %>
-       <h1><%# link_to "Stop haggling!", chatroom_path(@chatroom), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure? All haggle messages will be lost?" } %></h1>
-    <% end %>
-  </div>
-
-  <div class="col-6 artist_title">
-    <span class = "title">
-      <h4 style ="margin: 20px 0px;"> By: <%= @song.user.nickname %> </h4>
-
-      <% case @song.user.cred %>
-      <% when 0..10 %>
-        <%= cl_image_tag "dqsjezd716s3vqpysp1u", width: 50, height: 50, crop: :fill    %>  <!--min cred -->
-      <% when 10..100 %>
-         <%=  cl_image_tag "bi7cunh0wb8e37eonpuh", width: 50, height: 50, crop: :fill    %>  <!--2nd lvl cred  -->
-      <% when 100..500 %>
-        <%=  cl_image_tag "nwrmwv4pe75urersjexk", width: 50, height: 50, crop: :fill    %>  <!--3rd lvl cred  -->
-      <% when 500..1000 %>
-         <%=  cl_image_tag "lxglqrvux6hmfuigbwns", width: 50, height: 50, crop: :fill    %>  <!--4th lvl cred  -->
-      <% when 1000..100000 %>
-          <%=  cl_image_tag "ugwqufxkpjkg1gsbfc5g", width: 50, height: 50, crop: :fill    %>  <!--5th lvl cred  -->
-
+      <% if current_user.id == @song.user_id %>
+        <%= link_to "edit", edit_song_path(@song), class: "btn btn-warning" %>
       <% end %>
 
+      <% if @song.user != current_user %>
+        <%= link_to "Start Haggling", chatrooms_path(chatroom: {user_id: @song.user_id}),  class: "btn btn-success", method: :post %>
+         <h1><%# link_to "Stop haggling!", chatroom_path(@chatroom), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure? All haggle messages will be lost?" } %></h1>
+      <% end %>
+    </div>
 
-    </span>
+    <div class="col-5 artist_title songShowCol">
+      <div class = "artistTitle">
 
-    <div class="artist_box" >
+        <h4>Uploader: <%= @song.user.nickname %> </h4>
 
-        <div >
-
-          <% if @song.user.photo.key.nil? == false %>
-              <p>  <%=  cl_image_tag @song.user.photo.key, margin: 0 -16, background: "black", height: 200, width: 200, radius: 8, crop: :fill  %> </p>
-
-            <% end %>
-
-        </div>
-
-        <div class ="user_desc">
-          <%=   @song.user.description  %>
+        <div class="rateContainer">
+          <% case @song.user.cred %>
+            <% when 0..10 %>
+              <%= cl_image_tag "dqsjezd716s3vqpysp1u", class: "rate-flames rateSmall" %>  <!--min cred -->
+            <% when 10..100 %>
+              <%= cl_image_tag "dqsjezd716s3vqpysp1u", class: "rate-flames rateSmall" %>  <!--min cred -->
+              <%=  cl_image_tag "bi7cunh0wb8e37eonpuh", class: "rate-flames" %>  <!--2nd lvl cred  -->
+            <% when 100..500 %>
+              <%= cl_image_tag "dqsjezd716s3vqpysp1u", class: "rate-flames rateSmall" %>  <!--min cred -->
+              <%=  cl_image_tag "bi7cunh0wb8e37eonpuh", class: "rate-flames" %>  <!--2nd lvl cred  -->
+              <%=  cl_image_tag "nwrmwv4pe75urersjexk", class: "rate-flames" %>  <!--3rd lvl cred  -->
+            <% when 500..1000 %>
+              <%= cl_image_tag "dqsjezd716s3vqpysp1u", class: "rate-flames rateSmall" %>  <!--min cred -->
+              <%=  cl_image_tag "bi7cunh0wb8e37eonpuh", class: "rate-flames" %>  <!--2nd lvl cred  -->
+              <%=  cl_image_tag "nwrmwv4pe75urersjexk", class: "rate-flames" %>  <!--3rd lvl cred  -->
+              <%=  cl_image_tag "lxglqrvux6hmfuigbwns", class: "rate-flames" %>  <!--4th lvl cred  -->
+            <% when 1000..100000 %>
+              <%= cl_image_tag "dqsjezd716s3vqpysp1u", class: "rate-flames rateSmall" %>  <!--min cred -->
+              <%=  cl_image_tag "bi7cunh0wb8e37eonpuh", class: "rate-flames" %>  <!--2nd lvl cred  -->
+              <%=  cl_image_tag "nwrmwv4pe75urersjexk", class: "rate-flames" %>  <!--3rd lvl cred  -->
+              <%=  cl_image_tag "lxglqrvux6hmfuigbwns", class: "rate-flames" %>  <!--4th lvl cred  -->
+              <%=  cl_image_tag "ugwqufxkpjkg1gsbfc5g", class: "rate-flames rateLarge" %>  <!--5th lvl cred  -->
+          <% end %>
         </div>
 
       </div>
 
-  <%= link_to "edit", edit_song_path(@song) %>
-  <%# link_to edit_song_path(:song_id => song.id) %>
+      <!-- <div class="artist_box" > -->
 
-  <% if @song.user != current_user %>
-    <%= link_to "start new chat", chatrooms_path(chatroom: {user_id: @song.user_id}), method: :post %>
-  <% end %>
-</div>
+          <div>
+
+            <% if @song.user.photo.key.nil? == false %>
+                <p>  <%=  cl_image_tag @song.user.photo.key, margin: 0 -16, background: "black", height: 200, width: 200, radius: 8, crop: :fill  %> </p>
+
+              <% end %>
+
+          </div>
+
+          <div class ="user_desc">
+            <%=   @song.user.description  %>
+          </div>
+
+       <!--  </div> -->
+
+    <%= link_to "edit", edit_song_path(@song) %>
+    <%# link_to edit_song_path(:song_id => song.id) %>
+
+    <% if @song.user != current_user %>
+      <%= link_to "start new chat", chatrooms_path(chatroom: {user_id: @song.user_id}), method: :post %>
+    <% end %>
+
+
+  <div class="songCol">
+
+      <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+
+
+
+            <th scope="col">Song Name</th>
+
+            <th scope="col">Artist Name</th>
+
+            <th scope="col">Genres</th>
+
+            <th scope="col">Price</th>
+
+            <th scope="col"></th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+
+
+          <% @song.user.songs.each do |song| %>
+
+          <tr class=indextableRow>
+
+            <!-- <th scope="row">1</th> -->
+
+
+
+              <!-- <th scope="row"></th> -->
+              <td>
+                <p> <%= song.name  %>  </p>
+              </td>
+
+              <!-- <th scope="row"></th> -->
+              <td>
+                <p><%= song.user.nickname%></p>
+              </td>
+
+
+              <!-- <th scope="row"></th> -->
+              <td>
+               <p> <%= song.genre.genre %></p>
+              </td>
+
+            <!-- <th scope="row"></th> -->
+              <td>
+              <% if song.dollar == true  %>
+                <p>$<%=song.price%>
+              <%  else  %>
+                <p><%=song.price%>%</p>
+              <% end %>
+            </td>
+
+            <!-- <th scope="row"></th> -->
+            <td class="tableLink">
+              <% if song.audio.key.nil? == false  %>
+                <%= render "songs/video_control", song: song %>
+              <% else %>
+                <p>no audio</p>
+              <% end %>
+            </td>
+
+
+            <!-- End links on rows -->
+
+
+
+            <td class="tableLink">
+              <% if song.dollar == false %>
+                <%= link_to "enquire",  new_song_booking_path(song), id: "enquire" %>
+              <% end %>
+
+              <% if song.dollar == true %>
+                <%= link_to line_items_path(:song_id => song.id), method: :post do %>
+                <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615423829/001-cart_cfrbrc.svg", width: 25, height: 25, alt: 'a face that is unnervingly happy'%>
+                <% end %>
+              <% end  %>
+
+            </td>
+
+
+
+            <td class="tableLink">
+              <%= link_to "info", song_path(song.id), class: "viewSonglink" %>
+            </td>
+
+            <td class="tableLink">
+            <% if current_user.favorited?(song) %>
+              <% favorite = current_user.all_favorites.where(favoritable_id: song.id, favoritable_type: 'Song') %>
+              <%= link_to unfavorite_song_path(song), method: :delete, class: "favButton" do %>
+              <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615876602/heartfull_myjghr.svg", width: 20, height: 20%>
+              <% end %>
+            <% else %>
+              <%= link_to favorite_song_path(song), method: :post, class: "favButton" do %>
+             <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615876602/heartempty_pwwdxj.svg", width: 20, height: 20%>
+            <% end %>
+            <% end %>
+
+            </td>
+
+            </tr>
+
+            <% end %>
+
+
+          </tbody>
+        </table>
+        </div>
+      </div>
 
 
 
 
 
+  </div>
 
-    <div class="songs" style = "text-align:center">
-      <p> Songs currently available: </p>
-      <ul>
-      <% @song.user.songs.each do |song| %>
-      <li>
-      <% if song.state == "available" %>
-        <%= song.name %>
-          <% if song.dollar == true  %>
-            <p>  Buyout Price $<%=song.price  %>
-          <%  else  %>
-            Royalty <%  song.price  %> %  </p>
+
+
+
+
+      <div class="songs" style = "text-align:center">
+        <p> Songs currently available: </p>
+        <ul>
+        <% @song.user.songs.each do |song| %>
+        <li>
+          <% if song.state == "available" %>
+            <%= song.name %>
+              <% if song.dollar == true  %>
+                <p>  Price: $<%=song.price  %>
+              <%  else  %>
+                Royalty <%  song.price  %> %  </p>
+            <% end %>
+          <% end %>
+        </li>
         <% end %>
-      <% end %>
-      </li>
-     <% end %>
-    </div>
-  </div>
+      </ul>
+      </div>
 
-  </div>
 
-  <%#  cl_image_tag "dqsjezd716s3vqpysp1u", width: 100, height: 100, crop: :fill    %>  <!--min cred -->
-  <%#  cl_image_tag "bi7cunh0wb8e37eonpuh", width: 100, height: 100, crop: :fill    %>  <!--2nd lvl cred  -->
-  <%#  cl_image_tag "nwrmwv4pe75urersjexk", width: 100, height: 100, crop: :fill    %>  <!--3rd lvl cred  -->
-  <%#  cl_image_tag "lxglqrvux6hmfuigbwns", width: 100, height: 100, crop: :fill    %>  <!--4th lvl cred  -->
-  <%#  cl_image_tag "ugwqufxkpjkg1gsbfc5g", width: 100, height: 100, crop: :fill    %>  <!--5th lvl cred  -->
+
 </div>
 

@@ -1,6 +1,5 @@
-#lg_play {
-  bottom: 2px;
-  right: 0px;
+.showSongContainer{
+  margin: 55px;
 }
 
 .artist_box{
@@ -15,12 +14,52 @@
 .user_desc{
  margin: 20px;
 }
-.artist_title{
-  margin-top: 20px;
+// .artist_title{
+//   margin-top: 20px;
 
-}
-.title{
+// }
+.artistTitle{
   display: inline-flex;
-  margin: 0px 25%;
+}
 
+.songShowCol{
+ background-color: #2f2f2f;
+ margin-left: 20px;
+ padding: 20px;
+}
+
+.lyricsDiv{
+  background: #e4e4e4;
+  color: black;
+  padding: 10px;
+  margin: 20px 0;
+}
+
+
+.showHeader{
+  display: flex;
+  margin-top: 15px;
+
+  .playpausebutton{
+    width: 50px;
+    height: 50px;
+    border-radius: 28px;
+    margin-left: 25px;
+  }
+
+  .playicon{
+    position: relative;
+    bottom: 0px;
+    right: -2px;
+    width: 40px !important;
+    height: 30px !important;
+  }
+
+  .pauseicon{
+    position: relative;
+    bottom: 0px;
+    right: 0px;
+    width: 40px !important;
+    height: 30px !important;
+  }
 }

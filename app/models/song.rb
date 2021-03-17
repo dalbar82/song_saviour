@@ -3,10 +3,6 @@ class Song < ApplicationRecord
   belongs_to :user
   belongs_to :genre
 
-  has_and_belongs_to_many :genres_songs
-  has_many :genre_ids, through: :genres_songs
-  accepts_nested_attributes_for :genre_ids
-  belongs_to :order
   has_many :line_items, dependent: :destroy
   has_many :bookings
 

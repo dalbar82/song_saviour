@@ -1,12 +1,12 @@
 <%= simple_form_for song do |f|  %>
 <div class="row songNameUpload">
-<div class="col-8"> <%= f.input :name, label: "Name of song"   %></div>
-<div class="col-4"> <%= f.input :audio, as: :file, label: "Upload Audio", class: "uploadButton" %> </div>
+  <div class="col-8"> <%= f.input :name, label: "Name of song"   %></div>
+  <div class="col-4"> <%= f.input :audio, as: :file, label: "Upload Audio", class: "uploadButton" %> </div>
 </div>
 
 <div class="row songNameUpload">
-<div class="col-8"> <%= f.input :dollar,  as: :radio_buttons, label: "Sell Type: 'Yes' to sell outright ($) or 'No' for royalty split (%)"  %> </div>
-<div class="col-4"> <%= f.input :price, label: "Enter $ Value or Royalty %" %> </div>
+  <div class="col-8"> <%= f.input :dollar,  as: :radio_buttons, label: "Sell Type: 'Yes' to sell outright ($) or 'No' for royalty split (%)"  %> </div>
+  <div class="col-4"> <%= f.input :price, label: "Enter $ Value or Royalty %" %> </div>
 </div>
 
 <%= f.association :genre, label_method: :genre %>

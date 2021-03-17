@@ -24,3 +24,13 @@ select.form-control {
   filter: invert(1);
 }
 
+.haggle_card{
+  background-color: rgb(50, 50, 50);
+  padding: 20px;
+  margin: 10px 20px;
+  border-radius: 8px;
+
+}
+.haggle_card :hover{
+  text-decoration: none;
+}

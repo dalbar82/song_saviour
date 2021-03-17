@@ -17,6 +17,9 @@ class LineItemsController < ApplicationController
       @line_item.song = chosen_song
       @line_item.song.update(status: 'sold')
       @line_item.song.update(state: 'purchased')
+      artist = User.find(@line_item.song.user_id)
+      artist.cred += @line_item.song.price
+      artist.save
     end
   
     # Save and redirect to cart show path

@@ -23,7 +23,7 @@ class Song < ApplicationRecord
    pg_search_scope :global_search,
     against: [:name, :state],
     associated_against: {
-      user: [:first_name, :last_name],
+      user: [:first_name, :last_name, :nickname],
       genre: [:genre]
     },
     using: {

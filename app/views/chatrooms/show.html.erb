@@ -14,7 +14,7 @@
 
 
 
-    <div id="messages col-12" data-chatroom-id="<%= @chatroom.id %>">
+    <div id="messages" class="col-12" data-chatroom-id="<%= @chatroom.id %>">
       <%  if @chatroom.users.include? current_user %> 
         <% @chatroom.messages.each do |message| %>
           
@@ -35,7 +35,7 @@
             <% else  %>
               <div class="chat_left_mess ">
               
-                <div class="message-container" id="#message-<%= message.id %>">
+                <div class="message-container" id="#message-<%=message.id %>">
                   <i class="author">
                     <span><%= message.chatroom_user.user.nickname %></span>
                     <!-- the line below is a cludgy hack for now to adjust for daylight saving) -->
@@ -51,11 +51,16 @@
       <% end %>
     </div>
 
-    <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-      <%= f.input :content, label: false, placeholder: "Your message to get that deal! " %>
+    <%= simple_form_for [ @chatroom, @message ],remote: true, id: "message_form" do |f| %>
+      <%= f.input :content, label: false, placeholder: "Type message and hit 'Enter', to get that deal! " %>
 
     <% end %>
-    <h1><%= link_to "Stop haggling!", chatroom_path(@chatroom), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure? All haggle messages will be lost?" } %></h1>
+
+  <div class="quit_haggle">
+    <div id="haggle_button">
+      <h1><%= link_to "Stop haggling!", chatroom_path(@chatroom), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure? All haggle messages will be lost?" } %></h1>
+    </div>
+  </div>
   </div>
 
       <div class="chat_bottom_section">

@@ -344,27 +344,44 @@
               <div class="tab-pane fade " id="v-pills-haggle" role="tabpanel" aria-labelledby="v-pills-haggle-tab">
                 <div class="container">
                 <div class="row ">
-                   <h2>Ongoing Haggles</h2>
+                  <div class="haggles_cont">
+                    <div class="chat_title">
+                      <h2>Ongoing Haggles</h2>
+                    </div>
                     <% Chatroom.all.reverse.each  do |chat|  %>
                       <% if chat.hidden == false %>
+                      
                         <% if chat.user_ids.include? current_user.id %>
-                          <% users = User.find(chat.user_ids)  %>
-                          <% if users.first != current_user  %>
-                            <% haggler = users.first.nickname %>
-                          <% else %>
-                            <% haggler = users.last.nickname %>
+                        
+                          
+
+                            <% users = User.find(chat.user_ids)  %>
+                            <% if users.first != current_user  %>
+                              <% haggler = users.first.nickname %>
+                            <% else %>
+                              <% haggler = users.last.nickname %>
+                            <% end %>
                           <% end %>
-                        <% end %>
-                        <h4><%= link_to "Rejoin the haggle with  #{haggler}", chatroom_path(id: chat.id)    %>   </h4>
-                        <% if chat.messages.exists? %>
-                          <% if chat.messages.last.user != current_user %>
-                              <!-- the line below is a cludgy hack for now to adjust for local time) -->
-                            <% adjusted_datetime = (chat.messages.last.created_at + 11.hours) %>
-                            <small> Last Message not yours: <%= adjusted_datetime.strftime("%a %b %e at %l:%M%p") %></small>
-                          <% end  %>
-                        <% end %>
+                           
+                           <%= link_to chatroom_path(id: chat.id) do %> 
+                           <div class="haggle_card">
+                            <h4> Rejoin the haggle with   <%= "#{haggler} "%>    </h4>
+                               
+                            <% if chat.messages.exists? %>
+                              <% if chat.messages.last.user != current_user %>
+                                  <!-- the line below is a cludgy hack for now to adjust for local time) -->
+                                <% adjusted_datetime = (chat.messages.last.created_at + 11.hours) %>
+                                <small> Last Message not yours: <%= adjusted_datetime.strftime("%a %b %e at %l:%M%p") %></small>
+                              <% end  %>
+                            <% end %>
+
+                            </div>
+                            <% end %>
                       <% end %>
-                    <% end %>
+                      
+                     <% end %>
+                     
+                   </div>
                   </div>
                 </div>
               </div>

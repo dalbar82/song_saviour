@@ -194,7 +194,9 @@
                 <div class="container">
                 <div class="row ">
                   <div class="haggles_cont">
-                   <h2>Ongoing Haggles</h2>
+                    <div class="chat_title">
+                      <h2>Ongoing Haggles</h2>
+                    </div>
                     <% Chatroom.all.reverse.each  do |chat|  %>
                       <% if chat.hidden == false %>
                       

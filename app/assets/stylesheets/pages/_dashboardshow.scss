@@ -29,8 +29,11 @@ select.form-control {
   padding: 20px;
   margin: 10px 20px;
   border-radius: 8px;
-
 }
-.haggle_card :hover{
+.haggle_card a{
   text-decoration: none;
+}
+
+.haggle_card:hover{
+  background-color: rgb(85, 83, 83);
 }

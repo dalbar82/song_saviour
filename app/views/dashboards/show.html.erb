@@ -199,24 +199,31 @@
                       <% if chat.hidden == false %>
                       
                         <% if chat.user_ids.include? current_user.id %>
-                         <div class="haggle_card">
-                          <% users = User.find(chat.user_ids)  %>
-                          <% if users.first != current_user  %>
-                            <% haggler = users.first.nickname %>
-                          <% else %>
-                            <% haggler = users.last.nickname %>
+                        
+                          
+
+                            <% users = User.find(chat.user_ids)  %>
+                            <% if users.first != current_user  %>
+                              <% haggler = users.first.nickname %>
+                            <% else %>
+                              <% haggler = users.last.nickname %>
+                            <% end %>
                           <% end %>
-                        <% end %>
-                       
-                          <h4><%= link_to "Rejoin the haggle with  #{haggler}", chatroom_path(id: chat.id)    %>   </h4>
-                          <% if chat.messages.exists? %>
-                            <% if chat.messages.last.user != current_user %>
-                                <!-- the line below is a cludgy hack for now to adjust for local time) -->
-                              <% adjusted_datetime = (chat.messages.last.created_at + 11.hours) %>
-                              <small> Last Message not yours: <%= adjusted_datetime.strftime("%a %b %e at %l:%M%p") %></small>
-                            <% end  %>
-                          <% end %>
-                        </div>
+                           
+                           <%= link_to chatroom_path(id: chat.id) do %> 
+                           <div class="haggle_card">
+                            <h4> Rejoin the haggle with   <%= "#{haggler} "%>    </h4>
+                               
+                            <% if chat.messages.exists? %>
+                              <% if chat.messages.last.user != current_user %>
+                                  <!-- the line below is a cludgy hack for now to adjust for local time) -->
+                                <% adjusted_datetime = (chat.messages.last.created_at + 11.hours) %>
+                                <small> Last Message not yours: <%= adjusted_datetime.strftime("%a %b %e at %l:%M%p") %></small>
+                              <% end  %>
+                            <% end %>
+
+                            </div>
+                            <% end %>
                       <% end %>
                       
                      <% end %>

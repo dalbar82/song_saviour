@@ -15,6 +15,8 @@ class LineItemsController < ApplicationController
       @line_item.user = current_user
       @line_item.shopping_cart = current_cart
       @line_item.song = chosen_song
+      @line_item.song.update(status: 'sold')
+      @line_item.song.update(state: 'purchased')
     end
   
     # Save and redirect to cart show path

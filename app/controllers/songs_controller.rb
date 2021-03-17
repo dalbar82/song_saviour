@@ -15,6 +15,7 @@ class SongsController < ApplicationController
     @song = Song.new(song_params)
     @song.state = "available"
     @song.user = current_user
+
     if @song.save
       redirect_to song_url(@song)
     else
@@ -67,8 +68,6 @@ class SongsController < ApplicationController
     current_user.unfavorite(@song)
     redirect_back(fallback_location: songs_path)
   end
-
-
 
   private
 

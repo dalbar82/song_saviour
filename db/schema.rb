@@ -163,6 +163,8 @@ ActiveRecord::Schema.define(version: 2021_03_16_223105) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "genre_id", null: false
     t.boolean "dollar"
+    t.string "status"
+    t.string "position"
     t.index ["genre_id"], name: "index_songs_on_genre_id"
     t.index ["user_id"], name: "index_songs_on_user_id"
   end

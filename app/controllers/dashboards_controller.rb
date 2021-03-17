@@ -3,5 +3,6 @@ class DashboardsController < ApplicationController
      @bookings = Booking.all
      @songs = current_user.songs
       # @order_songs = Orders.find(params[@orders.song_id])
+      @allsongs = Song.all 
    end
 end

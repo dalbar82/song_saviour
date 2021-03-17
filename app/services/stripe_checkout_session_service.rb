@@ -4,6 +4,5 @@ class StripeCheckoutSessionService
     order.update(state: 'paid')
     songs = Song.find_by(status: "please")
     songs.update(postion: "sold")
-
   end
 end

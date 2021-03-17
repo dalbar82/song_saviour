@@ -229,22 +229,103 @@
                 </div>
               </div>
 
+
+            <!--   SOLD SONGS TABLE -->
+
+
               <div class="tab-pane fade " id="v-pills-sold" role="tabpanel" aria-labelledby="v-pills-sold-tab">
                 <div class="container">
                   <div class="row ">
-                   <% @current_user.songs.each do |song| %>
-                   <% if song.status == "sold" %>
-                      <div class="card col-4 p-2 m-4" style="width: 30px;">
-                        <div class="card-body">
-                          <h5 class="card-title"><%= song.name %></h5>
-                          <p class="card-text"><%= song.price %></p>
-                        </div>
-                      </div>
-                      <% end %>
-                    <% end %>
+                     <table class="table table-dark table-striped">
+
+                        <thead>
+                            <tr>
+
+                              <th scope="col"></th>
+
+                              <th scope="col">Song Name</th>
+
+                              <th scope="col">Artist Name</th>
+
+                              <th scope="col">Genres</th>
+
+                              <th scope="col">Price</th>
+
+                              <th scope="col"></th>
+
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                             <% @current_user.songs.each do |song| %>
+                             <% if song.status == "sold" %>
+
+                                <tr class=indextableRow>
+
+                                 <td>
+                                    <div class="artistClass">
+                                      <% if song.user.photo.key.nil? == false %>
+                                        <%= cl_image_tag song.user.photo.key, class: "songListImage"%>
+                                      <% else %>
+                                        <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615276848/SSlogoDarkTrans_v7auwe.svg", class: "songListImage" %>
+                                      <% end %>
+
+                                    </div>
+                                  </td>
+
+
+                                    <!-- Song name-->
+                                    <td>
+                                      <p> <%= song.name  %>  </p>
+                                    </td>
+
+                                    <!-- Uploader Nickname -->
+                                    <td>
+                                      <p><%= song.user.nickname%></p>
+                                    </td>
+
+                                    <!-- Genre -->
+                                    <td>
+                                      <p> <%= song.genre.genre %></p>
+                                    </td>
+
+                                    <!-- Price -->
+                                    <td>
+                                      <% if song.dollar == true  %>
+                                        <p>$<%=song.price%>
+                                      <%  else  %>
+                                        <p><%=song.price%>%</p>
+                                      <% end %>
+                                    </td>
+
+                                    <!-- Play -->
+                                    <td class="tableLink">
+                                      <% if song.audio.key.nil? == false  %>
+                                        <%= render "songs/video_control", song: song %>
+                                      <% else %>
+                                        <p>no audio</p>
+                                      <% end %>
+                                    </td>
+
+
+                                    <!-- End links on rows -->
+
+                                    <td class="tableLink">
+                                      <%= link_to "info", song_path(song.id), class: "viewSonglink" %>
+                                    </td>
+
+                                  </tr>
+                              <% end %>
+                             <% end %>
+                          </tbody>
+                        </table>
+
                   </div>
                 </div>
               </div>
+
+
+              <!--   PURCHASED SONGS TABLE -->
 
 
               <div class="tab-pane fade " id="v-pills-purchased" role="tabpanel" aria-labelledby="v-pills-purchased-tab">
@@ -341,6 +422,9 @@
               </div>
 
 
+              <!--  HAGGLE/CHAT LIST -->
+
+
               <div class="tab-pane fade " id="v-pills-haggle" role="tabpanel" aria-labelledby="v-pills-haggle-tab">
                 <div class="container">
                 <div class="row ">
@@ -350,10 +434,10 @@
                     </div>
                     <% Chatroom.all.reverse.each  do |chat|  %>
                       <% if chat.hidden == false %>
-                      
+
                         <% if chat.user_ids.include? current_user.id %>
-                        
-                          
+
+
 
                             <% users = User.find(chat.user_ids)  %>
                             <% if users.first != current_user  %>
@@ -362,11 +446,11 @@
                               <% haggler = users.last.nickname %>
                             <% end %>
                           <% end %>
-                           
-                           <%= link_to chatroom_path(id: chat.id) do %> 
+
+                           <%= link_to chatroom_path(id: chat.id) do %>
                            <div class="haggle_card">
-                            <h4> Rejoin the haggle with   <%= "#{haggler} "%>    </h4>
-                               
+                            <p> Rejoin the haggle with   <%= "#{haggler} "%>    </p>
+
                             <% if chat.messages.exists? %>
                               <% if chat.messages.last.user != current_user %>
                                   <!-- the line below is a cludgy hack for now to adjust for local time) -->
@@ -378,44 +462,126 @@
                             </div>
                             <% end %>
                       <% end %>
-                      
+
                      <% end %>
-                     
+
                    </div>
                   </div>
                 </div>
               </div>
 
+
+
+             <!--  PENDING SALE TABLE -->
+
+
               <div class="tab-pane fade " id="v-pills-pending" role="tabpanel" aria-labelledby="v-pills-pending-tab">
                 <div class="container">
                   <div class="row ">
-                    <% @bookings.each do |book| %>
-                      <div class="card col-4 p-2 m-4" style="width: 30px;">
-                        <% if book.song.user.photo.key.nil? == false %>
-                          <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                        <% else %>
-                          <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615276848/SSlogoDarkTrans_v7auwe.svg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-                        <% end %>
-                        <div class="card-body">
-                          <h5 class="card-title"><%= book.song.name %></h5>
-                          <p class="card-text"><%= book.status %></p>
-                          <h1><%= link_to "cancel enquiry", bookings_new_path(book), method: :delete, data: { confirm: "Are you sure?" } %></h1>
+
+
+                    <table class="table table-dark table-striped">
+
+
+                          <thead>
+                            <tr>
+
+                              <th scope="col"></th>
+
+                              <th scope="col">Song Name</th>
+
+                              <th scope="col">Artist Name</th>
+
+                              <th scope="col">Genres</th>
+
+                              <th scope="col">Price</th>
+
+                              <th scope="col"></th>
+
+                            </tr>
+                          </thead>
+
+                          <tbody>
+
+
+
+
+                          <% @bookings.each do |book| %>
+
+                          <tr class=indextableRow>
+
+                                 <td>
+                                    <div class="artistClass">
+                                      <% if book.song.user.photo.key.nil? == false %>
+                                        <%= cl_image_tag book.song.user.photo.key, class: "songListImage"%>
+                                      <% else %>
+                                        <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615276848/SSlogoDarkTrans_v7auwe.svg", class: "songListImage" %>
+                                      <% end %>
+
+                                    </div>
+                                  </td>
+
+
+                                    <!-- Song name-->
+                                    <td>
+                                      <p> <%= book.song.name  %>  </p>
+                                    </td>
+
+                                    <!-- Uploader Nickname -->
+                                    <td>
+                                      <p><%= book.song.user.nickname%></p>
+                                    </td>
+
+                                    <!-- Genre -->
+                                    <td>
+                                      <p> <%= book.song.genre.genre %></p>
+                                    </td>
+
+                                    <!-- Price -->
+                                    <td>
+                                      <% if book.song.dollar == true  %>
+                                        <p>$<%=book.song.price%>
+                                      <%  else  %>
+                                        <p><%=book.song.price%>%</p>
+                                      <% end %>
+                                    </td>
+
+                                    <!-- Play -->
+                                    <td class="tableLink">
+                                      <% if book.song.audio.key.nil? == false  %>
+                                        <%= render "songs/video_control", song: book.song %>
+                                      <% else %>
+                                        <p>no audio</p>
+                                      <% end %>
+                                    </td>
+
+
+                                    <!-- End links on rows -->
+
+
+                                  </tr>
+                              <% end %>
+
+                          </tbody>
+                        </table>
+
+
+
+
+
                         </div>
                       </div>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
+                    </div>
 
 
-                  <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                    <div class="container">
-                      <div class="row">
-                        <h2>Edit account</h2>
-                        <%= render "devise/registrations/form", resource: current_user%>
+                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                      <div class="container">
+                        <div class="row">
+                          <h2>Edit account</h2>
+                          <%= render "devise/registrations/form", resource: current_user%>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
         </div>
      </div>

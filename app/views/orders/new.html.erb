@@ -31,8 +31,9 @@
   <%= hidden_field_tag 'song_id', @current_cart %>
   <%= submit_tag 'Submit Order', class: 'btn btn-primary' %>
 <% end %>
-      <%= link_to "Empty cart", shopping_cart_path(@current_cart),method: :delete, data: {confirm: "Are you sure?"} %>
+      <%= link_to "Back To Cart", shopping_cart_path(current_user)%>
     </div>
   </div>
 
 </div>
+

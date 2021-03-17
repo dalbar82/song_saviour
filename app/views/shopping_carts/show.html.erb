@@ -1,38 +1,60 @@
-<br>
-<div class="container">
 
-  <h1>Shopping Cart</h1>
-  <br>
-
-  <ul>
-    <% @current_cart.line_items.each do |line_item| %>
-     <li class= "lineItemStyling">
-        <div>
-        Item: <%= line_item.song.name %>
-        </div>
-        <div>
-        Price: <%= number_to_currency(line_item.song.price) %>
-        </div>
-        <%= link_to "Remove", line_item_path(line_item), method: :delete %>
-        </li>
-    <% end %>
-
-  </ul>
-
-  <br>
-
-  <h3>Total: <%= number_to_currency(@current_cart.sub_total) %></h3>
-
-  <br>
-
-  <div class="container-flex">
-    <div class="formlinks">
-      <%= link_to "Proceed to checkout", new_order_path %>
-      <%= link_to "Empty cart", shopping_cart_path(@current_cart),method: :delete, data: {confirm: "Are you sure?"} %>
-    </div>
-  </div>
-</div>
 
 <%= form_tag orders_path do %>
   <%= hidden_field_tag 'current_cart', @current_cart %>
 <% end %>
+
+<div class= "cartbody">
+  
+<div class="wrap cf">
+  <h1 class="projTitle"> Shopping Cart</h1>
+  <div class="heading cf">
+    <%= link_to "Continue Shopping", songs_path, class: "continue" %> 
+    <%= link_to "Empty cart", shopping_cart_path(@current_cart), class: "continue", method: :delete, data: {confirm: "Are you sure?"} %> 
+  </div>
+  <div class="cart">
+    <ul class="cartWrap">
+    <% @current_cart.line_items.each do |line_item| %>
+      <li class="items odd">
+        
+    <div class="infoWrap"> 
+    
+        <div class="cartSection">
+                          <% if line_item.song.user.photo.key.nil? == false %>
+                    <%= cl_image_tag line_item.song.user.photo.key, class: "itemImg"%>
+                  <% else %>
+                    <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615276848/SSlogoDarkTrans_v7auwe.svg", class: "itemImg" %>
+                  <% end %>
+          <h3><%= line_item.song.name %></h3>
+        
+           <p>BY: <%= line_item.song.user.nickname %></p>
+        
+          <p class="stockStatus">Avaliable</p>
+        </div>  
+    
+        
+        <div class="prodTotal cartSection">
+          <%= number_to_currency(line_item.song.price) %>
+        </div>
+              <div class="cartSection removeWrap">
+           <%= link_to "X", line_item_path(line_item), class: "remove", method: :delete %>
+           
+        </div>
+        
+      </div>
+     
+      </li>
+         <% end %>
+
+ 
+    </ul>
+  </div>
+  
+  <div class="subtotal cf">
+    <ul>
+      <li class="totalRow final"><span class="label">Total</span><span class="value"><%= number_to_currency(@current_cart.sub_total) %></span></li>
+      <li class="totalRow"><%= link_to "checkout", new_order_path, class: "button continue" %></li>
+    </ul>
+  </div>
+</div>
+

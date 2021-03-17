@@ -5,27 +5,10 @@
   border-radius: 2px;
 }
 
-.form-control {
-  border: none;
-  border-bottom: 2px solid #ccc;
-  background: rgba(255,255,255,0.06);
-  border-radius: 2px;
-  color: white;
-  transition: all 0.3s;
-  padding: 30px 25px;
-  font-size: 20px;
-  letter-spacing: 1px;
-}
-select.form-control {
-  padding: 0;
-}
 
-.trix-button {
-  filter: invert(1);
-}
 
 .haggle_card{
-  background-color: rgb(50, 50, 50);
+  background-color: #FF5964;
   padding: 20px;
   margin: 10px 20px;
   border-radius: 8px;
@@ -38,9 +21,9 @@ a:hover{
 .haggle_card:hover{
   background-color: rgb(85, 83, 83);
   text-decoration: none;
-  
+
 }
 .chat_title{
-  padding-left: 50px; 
+  padding-left: 50px;
   padding-top: 15px;
 }

@@ -19,7 +19,7 @@ $fontSerif : 'Droid Serif', serif;
 }
 
 
- img {
+ .itemImg {
    max-width:100%;
  }
 .cf:before,.cf:after {content: " ";display: table;}
@@ -33,7 +33,7 @@ $fontSerif : 'Droid Serif', serif;
   margin: 0 auto;
   padding: 5% 0;
   margin-bottom: 5em;
-  
+
 }
 
 .order_title {
@@ -51,7 +51,7 @@ span {
   font-style: italic;
    text-transform: lowercase;
   color: #777;
-  
+
 }
 
 }
@@ -77,11 +77,11 @@ span {
     position: relative;
     right:0;
      @include transition(all, .15s, linear);
-    
+
   }
   &:hover , &:focus, &:active {
     background: #f69679;
-    
+
     &:after {
       right: -10px;
     }
@@ -117,14 +117,14 @@ text-transform: uppercase;
     font-style: italic;
      text-transform: lowercase;
     color: #777;
-    
+
   }
 }
 // CART HEADER
 .heading {
   padding: 1em 0;
   border-bottom: 1px solid #D0D0D0;
- 
+
 
   a.continue {
     &:link , &:visited {
@@ -147,11 +147,11 @@ text-transform: uppercase;
       position: relative;
       right:0;
        @include transition(all, .15s, linear);
-      
+
     }
     &:hover , &:focus, &:active {
       background: #f69679;
-      
+
       &:after {
         right: -10px;
       }
@@ -159,7 +159,7 @@ text-transform: uppercase;
   }
 }
 
-// TABLE HEADING 
+// TABLE HEADING
 
 .tableHead {
   display: table;
@@ -180,13 +180,13 @@ text-transform: uppercase;
 
 .cart {
   padding: 1em 0 ;
- 
+
   .items {
     display: block;
     width: 100%;
     vertical-align: middle;
     padding: 1.5em;
-   
+
     border-bottom: 1px solid #fafafa;
     &.even {
       background: #fafafa;
@@ -197,37 +197,37 @@ text-transform: uppercase;
     }
     .cartSection {
       display: table-cell;
- 
+
       vertical-align: middle;
-      
-      
+
+
       .itemNumber {
   font-size: .75em;
         color: #777;
         margin-bottom: .5em;
 }
-      
+
       h3 {
-   
+
         font-size: 1em;
       font-family: $fontSans;
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: .025em;
-        
-         
+
+
       }
       p {
         display: inline-block;
         font-size: .85em;
-        
+
         color: #777777;
         font-family: $fontSans;
             .quantity {
         font-weight: bold;
               color: #333;
       }
-        
+
         &.stockStatus {
           color: #82CA9C;
           font-weight: bold;
@@ -237,12 +237,12 @@ text-transform: uppercase;
             color: #F69679;
           }
         }
-        
+
       }
       .itemImg {
         width: 80px;
         height: 80px;
-       
+
         float: left;
       }
       &.qtyWrap , &.prodTotal {
@@ -253,35 +253,35 @@ text-transform: uppercase;
       font-weight: bold;
       font-size: 1.25em;
     }
-       
+
       }
-      
+
     input.qty {
         width: 2em;
         text-align: center;
         font-size: 1em;
           padding: .25em;
       margin: 1em .5em 0 0;
-        
+
       }
       .itemImg {
         width: 8em;
         display: inline;
         padding-right: 1em;
       }
-       
- 
+
+
     }
   }
-  
-}   
- 
+
+}
+
  .special {
    display: block;
    font-family: $fontSans;
   .specialContent {
    padding: 1em 1em 0;
-    display: block; 
+    display: block;
    margin-top:.5em;
    border-top: 1px solid #dadada;
    &:before {
@@ -291,7 +291,7 @@ text-transform: uppercase;
      color: #6f6f6f;
      font-family: helvetica, arial, sans-serif;
    }}
- 
+
  }
 
 .remove {
@@ -323,10 +323,10 @@ text-transform: uppercase;
     width: 100%;
  font-style: italic;
     font-size: 1.15em;
- 
+
     margin-bottom: .5em;
     letter-spacing: -.025em;
-    
+
   }
   input {
     width: 85%;
@@ -336,7 +336,7 @@ text-transform: uppercase;
     border: 1px solid #dadada;
     &:active, &:focus {
       outline: 0;
-     
+
     }
   }
   a.btn {
@@ -374,7 +374,7 @@ text-transform: uppercase;
       position: relative;
       right:0;
        @include transition(all, .15s, linear);
-      
+
     }
     &:hover , &:focus, &:active {
       background: #f69679;
@@ -382,7 +382,7 @@ text-transform: uppercase;
         right: -10px;
       }
     }
-  
+
   .promoCode & {
     font-size: .85em;
     paddding: .5em 2em;
@@ -396,7 +396,7 @@ float: right;
   .totalRow {
     padding: .5em;
    text-align: center;
-  
+
     &.final {
       font-size: 1.25em;
       font-weight: bold;
@@ -405,7 +405,7 @@ float: right;
       display: inline-block;
       padding: 0 0 0 1em;
       text-align: center;
-     
+
     }
     .label {
        font-family: $fontSans;
@@ -414,7 +414,7 @@ float: right;
       color: #777;
     }
     .value {
- 
+
       letter-spacing: -.025em;
       width: 35%;
     }
@@ -454,7 +454,7 @@ float: right;
          font-size: .75em;
        }
      }
-     &.prodTotal , &.removeWrap { 
+     &.prodTotal , &.removeWrap {
        display: none;
      }
     .itemImg {

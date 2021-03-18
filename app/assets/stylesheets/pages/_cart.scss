@@ -14,7 +14,9 @@ $fontSerif : 'Droid Serif', serif;
     transition: $transition-property $transition-time $method;
 }
 *{ box-sizing:border-box;}
-
+.cf{
+  justify-content: center;
+}
 
 
  img {
@@ -32,6 +34,72 @@ $fontSerif : 'Droid Serif', serif;
   padding: 5% 0;
   margin-bottom: 5em;
   
+}
+
+.order_title {
+  font-family: $fontSans;
+  font-weight: bold;
+text-align: center;
+font-size: 2em;
+padding: 1em 0;
+border-bottom: 1px solid #dadada;
+letter-spacing: 3px;
+text-transform: uppercase;
+span {
+  font-family: $fontSerif;
+  font-weight: normal;
+  font-style: italic;
+   text-transform: lowercase;
+  color: #777;
+  
+}
+
+}
+
+.link_to_dash {
+  &:link , &:visited {
+    text-decoration: none;
+    font-family: $fontSans;
+    letter-spacing: -.015em;
+    font-size: .75em;
+    padding: 1em;
+    color: #fff;
+    background: #82ca9c;
+    font-weight: bold;
+    border-radius: 50px;
+    float: center;
+    margin: auto 0;
+     @include transition(all, .25s, linear);
+  }
+  &:after {
+    content: "\276f";
+    padding: .5em;
+    position: relative;
+    right:0;
+     @include transition(all, .15s, linear);
+    
+  }
+  &:hover , &:focus, &:active {
+    background: #f69679;
+    
+    &:after {
+      right: -10px;
+    }
+  }
+}
+
+
+
+.order_state {
+  font-family: $fontSans;
+  font-weight: bold;
+text-align: center;
+font-size: 2em;
+padding: 1em 0;
+border-bottom: 1px solid #dadada;
+letter-spacing: 3px;
+text-transform: uppercase;
+
 }
 
 .projTitle {

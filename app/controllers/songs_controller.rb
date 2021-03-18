@@ -15,6 +15,7 @@ class SongsController < ApplicationController
     @song = Song.new(song_params)
     @song.state = "available"
     @song.user = current_user
+
     if @song.save
       redirect_to song_url(@song)
     else

@@ -38,6 +38,8 @@ class LineItemsController < ApplicationController
 
   def destroy
     @line_item = LineItem.find(params[:id])
+    @line_item.song.update(state: 'available')
+    @line_item.song.update(status: 'available')
     @line_item.destroy
     redirect_to shopping_cart_path(@current_cart)
   end

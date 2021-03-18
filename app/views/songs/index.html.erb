@@ -8,8 +8,13 @@
         <%= form_tag songs_path, method: :get do %>
         <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615460756/untitled_13_vljnyl.svg", class: "magnifyicon" %>
           <%= text_field_tag :query, params[:query], class: "form-control", id: "searchBar", placeholder: "Search da songs"%>
-          <%# submit_tag "Search", class: "btn btn-primary" %>
+          <%= collection_select :genre, :genre, Genre.all, :genre, :genre %>
+          <%= submit_tag "Search", class: "btn btn-primary" %>
+
         <% end %>
+
+        
+
       </div>
 
     </div>

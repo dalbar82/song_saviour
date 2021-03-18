@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'bookings/create'
   get 'bookings/show'
   get 'bookings/edit'
-  get 'bookings/destroy'
+  # get 'bookings/destroy'
   get 'bookings/new'
   # devise_for :views
   devise_for :users

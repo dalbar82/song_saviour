@@ -24,11 +24,11 @@
 }
 
 #messages{
-  display: flex;
-  flex-wrap: wrap;
+ 
   background-color: rgb(26, 25, 25) ;
   color:white;
   padding: 10px;
+  
 }
 .message-container {
   display: flex;
@@ -53,4 +53,15 @@
       background: #ab93e4;
     }
   }
+ 
+}
+.quit_haggle{
+  display: flex;
+  justify-content: flex-end;
+}
+#haggle_button{
+  
+  position: relative;
+  right: 40px;
+
 }

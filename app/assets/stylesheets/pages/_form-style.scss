@@ -74,3 +74,22 @@ select.form-control {
   border-radius: 8px;
   margin-top: 20px;
 }
+
+.userEditCancel{
+  margin: 20px 0;
+}
+
+.userEditSubmitButton{
+  background-color: #0CCE6B;
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.form-control-file{
+  input{
+    color: red;
+  }
+}

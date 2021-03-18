@@ -100,7 +100,7 @@ span {
     font-size: .75em;
     padding: 1em;
     color: #fff;
-    background: #82ca9c;
+    background: #0CCE6B;
     font-weight: bold;
     border-radius: 50px;
     float: center;
@@ -116,7 +116,7 @@ span {
 
   }
   &:hover , &:focus, &:active {
-    background: #f69679;
+    background: #FF5964;
 
     &:after {
       right: -10px;
@@ -170,7 +170,7 @@ text-transform: uppercase;
       font-size: .75em;
       padding: 1em;
       color: #fff;
-      background: #82ca9c;
+      background: #0CCE6B;
       font-weight: bold;
       border-radius: 50px;
     float: right;
@@ -186,7 +186,7 @@ text-transform: uppercase;
 
     }
     &:hover , &:focus, &:active {
-      background: #f69679;
+      background: #FF5964;
 
       &:after {
         right: -10px;
@@ -265,12 +265,12 @@ text-transform: uppercase;
       }
 
         &.stockStatus {
-          color: #82CA9C;
+          color: #0CCE6B;
           font-weight: bold;
           padding: .5em 0 0 1em;
           text-transform: uppercase;
           &.out {
-            color: #F69679;
+            color: #FF5964;
           }
         }
 
@@ -345,7 +345,7 @@ text-transform: uppercase;
   line-height: .85;
    @include transition(all, .25s, linear);
   &:hover {
-    background: #f30;
+    background: #FF5964;
   }
 }
 
@@ -381,10 +381,10 @@ text-transform: uppercase;
     padding: .75em 0;
     border-radius: 0 1em 1em 0;
     text-align: center;
-    border: 1px solid #82ca9c;
+    border: 1px solid #0CCE6B;
     &:hover {
-       border: 1px solid #f69679;
-       background: #f69679;
+       border: 1px solid #FF5964;
+       background: #FF5964;
     }
   }
 }
@@ -397,7 +397,7 @@ text-transform: uppercase;
       font-size: 1em;
       padding: 1em 3em;
       color: #fff;
-      background: #82ca9c;
+      background: #0CCE6B;
       font-weight: bold;
       border-radius: 50px;
     float: right;
@@ -413,7 +413,7 @@ text-transform: uppercase;
 
     }
     &:hover , &:focus, &:active {
-      background: #f69679;
+      background: #FF5964;
         &:after {
         right: -10px;
       }

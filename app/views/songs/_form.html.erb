@@ -2,9 +2,11 @@
 <div class="container newContainer">
     <h1 class="newSongH1">Add your song</h1>
     <br>
+    <%= simple_form_for song do |f|  %>
     <div class="row">
+
       <div class="col-7">
-        <%= simple_form_for song do |f|  %>
+
         <div class="songNameUpload">
           <div class="col-8"> <%= f.input :name, label: "Name of song"   %></div>
           <div class="col-4"> <%= f.input :audio, as: :file, label: "Upload Audio", class: "uploadButton" %> </div>
@@ -18,17 +20,18 @@
         <div class="songNameUpload">
           <%= f.association :genre, label_method: :genre %>
         </div>
-        <%= f.submit class: "formButton" %>
-      </div>
+        </div>
 
-      <div class="col-5">
+
+        <div class="col-5">
         <div class="songNameUpload">
           <%= f.input :lyrics, as: :rich_text_area, label: "Show us ya Lyrics", class: "lyrics_text" %>
         </div>
+
+
+        <%= f.submit class: "formButton" %>
       </div>
-
-
-
+      </div>
     <% end %>
-    </div>
+
 </div>

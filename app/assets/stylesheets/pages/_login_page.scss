@@ -1,0 +1,52 @@
+
+// .loginMain{
+//   position: relative;
+// }
+
+
+.loginPage{
+
+  background-color: #2f2f2f;
+  padding: 20px;
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55vw;
+  height: 220px;
+}
+
+.loginButton{
+    right: 21px;
+    bottom: 10px;
+    background-color: #FF5964;
+    border-radius: 6px;
+    color: white;
+    border: none;
+    padding: 8px 35px;
+    position: absolute;
+    margin-top: 10px;
+
+    a{
+      color: white;
+    }
+}
+
+.loginSignUp{
+    background-color: #0CCE6B;
+    border-radius: 6px;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    margin-top: 10px;
+
+    a{
+      color: white;
+    }
+}
+
+.loginForgot{
+  position: absolute;
+  bottom: 56px;
+  right: 21px;
+}

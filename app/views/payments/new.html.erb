@@ -1,9 +1,52 @@
-<div class="container">
-  <div class="row py-4">
-      <div class="col">
-      <h1>Checkout summary</h1>
-      <p>Purchase of <strong><%= @order.id %></strong> for <strong><%= humanized_money_with_symbol @order.total_price %></strong></p>
-      <button id="pay" class="btn btn-primary">Pay</button>
+
+
+
+
+
+
+
+<div class= "cartbody">
+  
+<div class="wrap cf">
+  <h1 class="projTitle"> Checkout Page</h1>
+  <div class="heading cf">
+  </div>
+  <div class="cart">
+    <ul class="cartWrap">
+
+      <li class="items odd">
+        
+    <div class="infoWrap"> 
+    
+        <div class="cartSection">
+          <h3>Order number: <strong><%= @order.id %></strong></h3>
+        
+           <p></p>
+        
+          <p class="stockStatus">These songs are almost yours!</p>
+        </div>  
+    
+        
+        <div class="prodTotal cartSection">
+          <%= humanized_money_with_symbol @order.total_price %>
+        </div>
+              <div class="cartSection removeWrap">
+           
+        </div>
+        
+      </div>
+     
+      </li>
+      
+
+ 
+    </ul>
+  </div>
+  
+       <div class="subtotal cf">
+    <ul>
+      <li class="totalRow final"><span class="label">Total</span><span class="value"><%= humanized_money_with_symbol @order.total_price %></span></li>
+       <li class="totalRow">      <button id="pay" class="btn btn-primary">Pay</button>
       <script src="https://js.stripe.com/v3/"></script>
       <script>
         const paymentButton = document.getElementById('pay');
@@ -13,7 +56,10 @@
             sessionId: '<%= @order.checout_session_id %>'
           });
         });
-      </script> -->
+      </script> --></li>
+    </ul>
+  </div>
+</div>
     </div>
   </div>
 </div>

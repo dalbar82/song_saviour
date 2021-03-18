@@ -18,16 +18,17 @@
         <div class="songNameUpload">
           <%= f.association :genre, label_method: :genre %>
         </div>
-        <%= f.submit class: "formButton" %>
-      </div>
+        </div>
 
-      <div class="col-5">
+
+        <div class="col-5">
         <div class="songNameUpload">
           <%= f.input :lyrics, as: :rich_text_area, label: "Show us ya Lyrics", class: "lyrics_text" %>
         </div>
+
+
+        <%= f.submit class: "formButton" %>
       </div>
-
-
 
     <% end %>
     </div>

@@ -99,25 +99,33 @@
 
 
                         <!-- End links on row -->
-                          <td>
+                        <td class="tableLink">
 
+                          <% if Song.find(favorite.favoritable_id).dollar == false %>
+                          <%= link_to new_song_booking_path(Song.find(favorite.favoritable_id)), id: "enquire" do %>
+                          <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1616052210/help_rrwmrh.svg", id: "speechIcon"%>
+                          <% end %>
+                          <% end %>
+                        </td>
 
+                        <td class="tableLink">
+                          <% if Song.find(favorite.favoritable_id).dollar == true %>
+                          <%= link_to line_items_path(:song_id => Song.find(favorite.favoritable_id).id), method: :post do %>
+                            <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1616049149/cartGreen_srsjlw.svg", width: 25, height: 25, alt: 'a face that is unnervingly happy'%>
+                          <% end %>
+                          <% end  %>
+                        </td>
 
+                        <td class="tableLink">
+                          <%= link_to song_path(Song.find(favorite.favoritable_id).id), class: "viewSonglink" do %>
+                          <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1616051353/information_2_etxwxw.svg", id: "infoIcon"%>
+                          <% end  %>
+                        </td>
 
-
-                        <% if Song.find(favorite.favoritable_id).dollar == false %>
-                        <%= link_to "?",  new_song_booking_path(Song.find(favorite.favoritable_id)), id: "enquire" %>
-                        <% end %>
-
-                        <% if Song.find(favorite.favoritable_id).dollar == true %>
-                        <%= link_to line_items_path(:song_id => Song.find(favorite.favoritable_id).id), method: :post do %>
-                          <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615423829/001-cart_cfrbrc.svg", width: 25, height: 25, alt: 'a face that is unnervingly happy'%>
-                        <% end %>
-                        <% end  %>
-                        <%= link_to "view", song_path(Song.find(favorite.favoritable_id).id), class: "viewSonglink" %>
-
-
-                          <%= link_to "un-fav", unfavorite_song_path(Song.find(favorite.favoritable_id)), method: :delete, class: "favButton" %>
+                        <td class="tableLink">
+                          <%= link_to unfavorite_song_path(Song.find(favorite.favoritable_id)), method: :delete, class: "favButton" do %>
+                          <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1616049149/heartFULL_zgywca.svg", width: 20, height: 20%>
+                          <% end  %>
                         </td>
 
                         </tr>
@@ -578,7 +586,7 @@
                     <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                       <div class="container">
                         <div class="row">
-                          <h2>Edit account</h2>
+
                           <%= render "devise/registrations/form", resource: current_user%>
                         </div>
                       </div>

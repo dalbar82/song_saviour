@@ -91,6 +91,7 @@
 
               <!-- <th scope="row"></th> -->
               <td>
+
                <p> <%= song.genre.genre %></p>
               </td>
 
@@ -119,12 +120,14 @@
 
             <td class="tableLink">
               <% if song.dollar == false %>
-                <%= link_to "enquire",  new_song_booking_path(song), id: "enquire" %>
+                <%= link_to new_song_booking_path(song), id: "enquire" do%>
+                <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1616052210/help_rrwmrh.svg", id: "speechIcon"%>
+              <% end %>
               <% end %>
 
               <% if song.dollar == true %>
                 <%= link_to line_items_path(:song_id => song.id), method: :post do %>
-                <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615423829/001-cart_cfrbrc.svg", width: 25, height: 25, alt: 'a face that is unnervingly happy'%>
+                <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1616049149/cartGreen_srsjlw.svg", width: 25, height: 25, alt: 'a face that is unnervingly happy'%>
                 <% end %>
               <% end  %>
 
@@ -133,18 +136,20 @@
 
 
             <td class="tableLink">
-              <%= link_to "info", song_path(song.id), class: "viewSonglink" %>
+              <%= link_to song_path(song.id), class: "viewSonglink" do %>
+              <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1616051353/information_2_etxwxw.svg", id: "infoIcon"%>
+              <% end  %>
             </td>
 
             <td class="tableLink">
             <% if current_user.favorited?(song) %>
               <% favorite = current_user.all_favorites.where(favoritable_id: song.id, favoritable_type: 'Song') %>
               <%= link_to unfavorite_song_path(song), method: :delete, class: "favButton" do %>
-              <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615876602/heartfull_myjghr.svg", width: 20, height: 20%>
+              <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1616049149/heartFULL_zgywca.svg", width: 20, height: 20%>
               <% end %>
             <% else %>
               <%= link_to favorite_song_path(song), method: :post, class: "favButton" do %>
-             <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1615876602/heartempty_pwwdxj.svg", width: 20, height: 20%>
+             <%= image_tag "https://res.cloudinary.com/dck5uyfgr/image/upload/v1616049149/heartEMPTY_asia3p.svg", width: 20, height: 20%>
             <% end %>
             <% end %>
 

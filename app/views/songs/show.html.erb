@@ -17,7 +17,7 @@
         <% end %>
 
         <% if @song.user != current_user %>
-          <%= link_to "Start Haggling", chatrooms_path(chatroom: {user_id: @song.user_id}),  class: "btn btn-success showEditBtn", method: :post %>
+          <%= link_to "Haggle", chatrooms_path(chatroom: {user_id: @song.user_id}),  class: "btn btn-success showEditBtn", method: :post %>
         <% end %>
       </div>
 

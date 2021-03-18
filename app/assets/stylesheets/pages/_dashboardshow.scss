@@ -30,3 +30,13 @@ a:hover{
   padding-left: 50px;
   padding-top: 15px;
 }
+.nav-link{
+  padding: 14px 15px;
+}
+.nav-link:hover{
+  background-color: #5d5d5d;
+}
+
+.nav-link.active{
+  background-color: #5d5d5d !important;
+}

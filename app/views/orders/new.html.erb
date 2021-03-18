@@ -44,7 +44,7 @@
       <li class="totalRow final"><span class="label">Total</span><span class="value"><%= number_to_currency(@current_cart.sub_total) %></span></li>
       <li class="totalRow">           <%= form_tag orders_path do %>
   <%= hidden_field_tag 'song_id', @current_cart %>
-  <%= submit_tag 'Submit Order', class: "button continue" %>
+  <%= submit_tag 'Submit Order', class: "submit_b" %>
 <% end %></li> 
  
     </ul>

@@ -2,7 +2,7 @@
 class Song < ApplicationRecord
   belongs_to :user
   belongs_to :genre
-  belongs_to :order
+
   has_many :line_items, dependent: :destroy
   has_many :bookings
 

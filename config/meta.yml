@@ -1,5 +1,5 @@
 meta_product_name: "Song Saviour"
 meta_title: "Song Saviour"
 meta_description: "Music Lives here. Artists buy and sell song rights. Let those songs live even when you can't perform them. Get great songs immediately you need to fill out your set fast"
-meta_image: "app/assets/images/liveandloud.jpeg" # should exist in `app/assets/images/`   really???? will Heroku allow this I don't think so 
+meta_image: "/app/assets/images/liveandloud.jpg" # should exist in `app/assets/images/`   really???? will Heroku allow this I don't think so 
 #twitter_account: "@product_twitter_account"   # required for Twitter Cards

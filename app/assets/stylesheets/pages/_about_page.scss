@@ -1,15 +1,20 @@
-
+.aboutContainer{
+  text-align: center;
+}
 
 .aboutImage{
-  position: relative;
-    top: -45px;
-    width: 100vw;
-    z-index: -10;
+  // position: relative;
+  //   top: -45px;
+    width: 50%;
+  //   z-index: -10;
+  margin: 15px 0;
+  border-radius: 10px;
 }
 
 .aboutH1{
-      position: absolute;
-    top: 44px;
-    left: 40%;
-    font-size: 1.5rem;
+    //   position: absolute;
+    // top: 44px;
+    // left: 40%;
+    // font-size: 1.5rem;
+    margin: 25px 0;
 }

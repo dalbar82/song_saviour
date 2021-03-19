@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
 
 
-
+  
 
   resources :songs do
     resources :bookings, only: [:index, :show, :new, :update, :edit, :create, :destroy]
@@ -47,6 +47,7 @@ Rails.application.routes.draw do
 
   resource :dashboard, only: [:show]
 
+   get "/pages/about" => "pages#about"
 end
 
 

@@ -15,8 +15,8 @@ class LineItemsController < ApplicationController
       @line_item.user = current_user
       @line_item.shopping_cart = current_cart
       @line_item.song = chosen_song
-      @line_item.song.update(status: 'sold')
-      @line_item.song.update(state: 'purchased')
+      @line_item.song.update(status: 'gold')
+      @line_item.song.update(state: 'baby')
       artist = User.find(@line_item.song.user_id)
       artist.cred += @line_item.song.price
       artist.save

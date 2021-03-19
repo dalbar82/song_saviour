@@ -3,15 +3,10 @@ class SongsController < ApplicationController
   before_action :set_song, only: %i[show edit update favorite unfavorite]
 
   def index
-
     @songs = Song.all
     @song = Song.new
-    if params[:query].present? && params[:genre][:genre].present?
-      @songs = Song.global_search("#{params[:query]} #{params[:genre]}")
-    elsif params[:query].present?
+    if params[:query].present?
       @songs = Song.global_search(params[:query])
-    elsif params[:genre].present? && params[:genre][:genre].present?
-      @songs = Song.global_search(params[:genre][:genre])
     end
   end
 

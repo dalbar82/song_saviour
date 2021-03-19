@@ -19,7 +19,7 @@
 
     <div class="infoWrap">
 
-        <div class="cartSection">
+        <div class="cartSection col-8">
                           <% if line_item.song.user.photo.key.nil? == false %>
                     <%= cl_image_tag line_item.song.user.photo.key, class: "itemImg"%>
                   <% else %>
@@ -33,16 +33,19 @@
         </div>
 
 
-        <div class="prodTotal cartSection">
+        <div class="priceRemove col-4">
+        <div class="prodTotal">
           <%= number_to_currency(line_item.song.price) %>
         </div>
               <div class="cartSection removeWrap">
            <%= link_to "X", line_item_path(line_item), class: "remove", method: :delete %>
-
-        </div>
-
       </div>
 
+        </div>
+        
+        
+      </div>
+      
       </li>
          <% end %>
 

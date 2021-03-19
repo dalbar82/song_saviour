@@ -83,7 +83,7 @@ span {
 
 }
 &:hover , &:focus, &:active {
-  background: #f69679;
+  background: #FF5964;
 
   &:after {
     right: -10px;
@@ -281,7 +281,7 @@ text-transform: uppercase;
 
         float: left;
       }
-      &.qtyWrap , &.prodTotal {
+      &.qtyWrap{
         text-align: center;
         float: right;
         margin-top: 25px;
@@ -289,8 +289,11 @@ text-transform: uppercase;
       font-weight: bold;
       font-size: 1.25em;
     }
+    
 
       }
+
+     
 
     input.qty {
         width: 2em;
@@ -492,7 +495,7 @@ float: right;
          font-size: .75em;
        }
      }
-     &.prodTotal , &.removeWrap {
+     &.removeWrap {
        display: none;
      }
     .itemImg {
@@ -505,4 +508,13 @@ float: right;
 width: 100%;
 text-align: center;
 }
+}
+
+.priceRemove{
+  position: relative;
+  display: flex;
+}
+
+.prodTotal {
+  padding-right: 20px;
 }

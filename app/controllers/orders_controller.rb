@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @songs = Song.find_by(state: 'baby')
     current_cart = @current_cart
     order  = Order.create!(total_price: current_cart.sub_total, state: 'pending', user: current_user)
     price = current_cart.sub_total * 100
@@ -21,6 +22,8 @@ class OrdersController < ApplicationController
     )
   
     order.update(checout_session_id: session.id)
+    @songs.update(status: 'sold')
+    @songs.update(state: 'purchased')
     redirect_to new_order_payment_path(order)
   end
 

@@ -3,7 +3,6 @@ class SongsController < ApplicationController
   before_action :set_song, only: %i[show edit update favorite unfavorite]
 
   def index
-
     @songs = Song.all
     @song = Song.new
     if params[:query].present?

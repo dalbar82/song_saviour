@@ -4,10 +4,11 @@
 
 <div class="wrap cf">
   <h1 class="order_title"> Order Number: <%= @order.id %></h1>
-  <div class = "order_state"> <h1><%= humanized_money_with_symbol @order.total_price %></h1> <p> <em><%= @order.created_at.to_date %></em> </p></div>
+  <div class = "order_state"> <h1><%= humanized_money_with_symbol @order.total_price %></h1> <p> <em><%= @order.created_at.to_date %></em> </p>
+  <p> <em>PAID</em> </p></div>
 
   <div class="heading cf">
-    <%= link_to "To Dashboard", shopping_cart_path(@current_cart), class: "link_to_dash", method: :delete, data: {confirm: "Are you sure?"} %>
+    <%= link_to "To Dashboard", dashboard_path(@current_cart), class: "link_to_dash" %>
   </div>
 
   </div>

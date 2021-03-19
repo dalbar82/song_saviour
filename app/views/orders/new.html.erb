@@ -13,7 +13,7 @@
         
     <div class="infoWrap"> 
     
-        <div class="cartSection">
+        <div class="cartSection col-8">
           <h3><%= line_item.song.name %></h3>
         
            <p>BY: <%= line_item.song.user.nickname %></p>
@@ -21,13 +21,13 @@
           <p class="stockStatus">locked in for order</p>
         </div>  
     
-        
-        <div class="prodTotal cartSection">
+            <div class="priceRemove col-4">
+        <div class="prodTotal">
           <%= number_to_currency(line_item.song.price) %>
         </div>
               <div class="cartSection removeWrap">
           
-           
+           </div>
         </div>
         
       </div>
@@ -44,7 +44,7 @@
       <li class="totalRow final"><span class="label">Total</span><span class="value"><%= number_to_currency(@current_cart.sub_total) %></span></li>
       <li class="totalRow">           <%= form_tag orders_path do %>
   <%= hidden_field_tag 'song_id', @current_cart %>
-  <%= submit_tag 'Submit Order', class: "button continue" %>
+  <%= submit_tag 'Submit Order', class: "submit_b" %>
 <% end %></li> 
  
     </ul>

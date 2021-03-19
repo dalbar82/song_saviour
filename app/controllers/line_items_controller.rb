@@ -18,6 +18,10 @@ class LineItemsController < ApplicationController
       @line_item.song.update(status: 'gold')
       @line_item.song.update(state: 'baby')
       artist = User.find(@line_item.song.user_id)
+      if artist.cred == nil
+        artist.cred = 0
+      end
+
       artist.cred += @line_item.song.price
       artist.save
     end

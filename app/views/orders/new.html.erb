@@ -13,7 +13,7 @@
         
     <div class="infoWrap"> 
     
-        <div class="cartSection">
+        <div class="cartSection col-8">
           <h3><%= line_item.song.name %></h3>
         
            <p>BY: <%= line_item.song.user.nickname %></p>
@@ -21,13 +21,13 @@
           <p class="stockStatus">locked in for order</p>
         </div>  
     
-        
-        <div class="prodTotal cartSection">
+            <div class="priceRemove col-4">
+        <div class="prodTotal">
           <%= number_to_currency(line_item.song.price) %>
         </div>
               <div class="cartSection removeWrap">
           
-           
+           </div>
         </div>
         
       </div>

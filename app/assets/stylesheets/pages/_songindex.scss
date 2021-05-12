@@ -1,7 +1,10 @@
 // .indexSearch{
 //   display: inline-flex;
 // }
-
+.col-10{
+  height: 91vh;
+    overflow-y: scroll;
+}
 
 .table-dark{
   color: #cacaca;
@@ -76,6 +79,7 @@
 .songListImage{
   width: 40px;
   height: 40px;
+  object-fit: cover;
 }
 
 .sidebar{
@@ -83,6 +87,8 @@
     height: 100vh;
     box-shadow: inset 0px -1px 5px 0px #151515;
 }
+
+
 
 .magnifyicon{
   width: 13px;
@@ -144,7 +150,7 @@
 }
 tr.indextableRow {
   height: 65px;
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 tr.indextableRow:hover {
   // background: #8e8e8e!important; /* overrides odd and even styles */

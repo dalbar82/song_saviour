@@ -12,13 +12,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 55vw;
-  height: 220px;
+  width: 36vw;
+  height: 270px;
 }
 
 .loginButton{
     right: 21px;
-    bottom: 10px;
+    bottom: 23px;
     background-color: #FF5964;
     border-radius: 6px;
     color: white;
@@ -32,13 +32,21 @@
     }
 }
 
+#user_email{
+  margin-bottom: 25px;
+}
+#user_password{
+  margin-bottom: 25px;
+}
+
 .loginSignUp{
     background-color: #0CCE6B;
     border-radius: 6px;
     color: white;
     border: none;
     padding: 10px 30px;
-    margin-top: 10px;
+    position: absolute;
+    bottom: 23px;
 
     a{
       color: white;
@@ -47,6 +55,6 @@
 
 .loginForgot{
   position: absolute;
-  bottom: 56px;
+  bottom: 87px;
   right: 21px;
 }

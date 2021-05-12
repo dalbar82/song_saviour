@@ -73,3 +73,7 @@ gem 'cloudinary', '~> 1.16.0'
 gem 'pg_search', '~> 2.3.0'
 
 gem 'acts_as_favoritor'
+
+gem 'bootstrap-sass'
+
+gem 'bootstrap-table-rails'

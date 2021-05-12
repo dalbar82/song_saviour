@@ -8,5 +8,7 @@ channels.keys().forEach(channels)
 
     // $('.indexSearch').find('.magnifyicon').click(function(){
     //     $('#indexSearch').prop("type", "text");
-    // })    
+    // })
     //  I have commented this out for now
+
+
